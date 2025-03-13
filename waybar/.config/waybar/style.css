@@ -1,0 +1,25 @@
+* {
+    border: none;
+    background: none;
+    font-family: JetBrainsMono Nerd Font;
+    font-size: 14px;
+    color: #c0c0c0; /* Soft gray text */
+}
+
+window#waybar {
+    background: rgba(20, 20, 20, 0.8);
+    padding: 5px;
+}
+
+#clock, #pulseaudio, #battery, #network, #backlight, #bluetooth {
+    padding: 5px 10px;
+}
+
+/* Borders only between distinct sections */
+
+/* Color changes based on significance */
+#battery.critical { color: #ff5555; }  /* Red for low battery */
+#battery.warning { color: #ffaa00; }   /* Orange for medium battery */
+#battery.charging { color: #66cc66; }  /* Battery is charging */
+#pulseaudio.muted { color: #777777; }  /* Dim for muted volume */
+#network.disconnected { color: #ff5555; } /* Red for no network */

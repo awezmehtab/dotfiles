@@ -1,0 +1,50 @@
+{
+  "layer": "top",
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": [ "pulseaudio", "battery", "network", "backlight", "bluetooth"],
+
+  "clock": {
+    "format": "{:%H:%M}"
+  },
+
+  "pulseaudio": {
+    "format": "󰕾 {volume}%",
+    "format-muted": "󰝟 {volume}%",
+    "format-bluetooth": "󰂯 {volume}%"
+  },
+
+  "battery": {
+    "interval": 3,
+    "states": {
+        "critical": 20,
+        "warning": 40
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "{icon} {capacity}%",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󱟢" ],
+  },
+
+  "network": {
+    "format-wifi": "{icon} {essid}",
+    "format-ethernet": "󰈀 Ethernet",
+    "format-disconnected": "no net",
+    "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨",],
+    "tooltip": true,
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "󰃟 {percent}%",
+    //"on-click": "brightnessctl s 5%+",
+    //"on-click-right": "brightnessctl s 5%-",
+  },
+
+  "bluetooth": {
+    "format": "󰂯 {status}",
+    "format-connected": "",
+    "interval": 5,
+    "tooltip": true,
+  }
+
+}

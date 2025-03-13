@@ -1,0 +1,9 @@
+show=dmenu
+prompt=Run:
+allow_markup=false
+hide_scroll=true
+width=30%
+height=30%
+lines=8
+location=center
+font=monospace 20

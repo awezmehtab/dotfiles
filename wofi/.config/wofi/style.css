@@ -1,0 +1,29 @@
+window {
+    background-color: rgba(25, 25, 25, 0.9); /* Less transparent */
+    border: none; /* No border */
+    padding: 15px; /* More space around */
+    font-size: 18px;
+}
+
+#input {
+    background-color: rgba(35, 35, 35, 0.9); /* Darker, less transparent */
+    color: #bbbbbb;
+    border: none;
+    padding: 8px; /* More gap between text & border */
+}
+
+#inner-box, #outer-box {
+    background-color: transparent; /* No extra background layer */
+}
+
+#entry {
+    background-color: transparent; /* No background */
+    color: #dddddd;
+    padding: 10px; /* Better spacing */
+    border-radius: 0px; /* No rounding */
+}
+
+#entry:selected {
+    background-color: rgba(60, 60, 60, 0.9); /* Subtle selection */
+    color: #ffffff;
+}
