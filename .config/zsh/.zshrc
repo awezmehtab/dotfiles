@@ -117,6 +117,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias ll='ls -alH'
 
+export FZF_DEFAULT_OPTS='--reverse --height 40%'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -f "/home/awez/.ghcup/env" ] && . "/home/awez/.ghcup/env" # ghcup-env
@@ -125,3 +126,17 @@ source ~/.pyvenv/bin/activate
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+export FZF_ALT_C_OPTS='--walker-root=/home/awez/sem4'
+open-file() {
+    file=$(fzf --style minimal --preview 'fzf-preview.sh {}' --bind 'focus:transform-header:file --brief {} --walker=file,dir,hidden,follow' < <(fd)) 
+    [ -n "$file" ] || return
+    case "$file" in
+        *.pdf) nohup zathura "$file" >/dev/null 2>&1 & ;;
+        *) nvim "$file" ;;
+    esac
+    zle reset-prompt
+}
+
+zle -N open-file
+bindkey '^o' open-file
