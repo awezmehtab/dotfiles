@@ -5,7 +5,8 @@
   "modules-right": [ "pulseaudio", "battery", "network", "backlight", "bluetooth"],
 
   "clock": {
-    "format": "{:%H:%M}"
+    "format": "{:%H:%M}",
+    "tooltip-format": "{:%A, %B %d, %Y}",
   },
 
   "pulseaudio": {
