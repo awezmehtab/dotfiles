@@ -115,19 +115,13 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+alias ll='ls -alH'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-
 [ -f "/home/awez/.ghcup/env" ] && . "/home/awez/.ghcup/env" # ghcup-env
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS+=(nix_shell)
 
 source ~/.pyvenv/bin/activate
-
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh//.p10k.zsh.
-[[ ! -f ~/.config/zsh//.p10k.zsh ]] || source ~/.config/zsh//.p10k.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
