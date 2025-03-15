@@ -2,11 +2,19 @@
   "layer": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": [ "pulseaudio", "battery", "network", "backlight", "bluetooth"],
+  "modules-right": ["temperature", "pulseaudio", "battery", "network", "backlight", "bluetooth"],
 
   "clock": {
     "format": "{:%H:%M}",
     "tooltip-format": "{:%A, %B %d, %Y}",
+  },
+
+  "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    // "critical-threshold": 80,
+     "format-critical": "{temperatureC}°C ",
+    "format": "{temperatureC}°C "
   },
 
   "pulseaudio": {

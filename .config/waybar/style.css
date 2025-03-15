@@ -11,7 +11,7 @@ window#waybar {
     padding: 5px;
 }
 
-#clock, #pulseaudio, #battery, #network, #backlight, #bluetooth {
+#clock, #pulseaudio, #battery, #network, #backlight, #bluetooth, #temperature {
     padding: 5px 10px;
 }
 
