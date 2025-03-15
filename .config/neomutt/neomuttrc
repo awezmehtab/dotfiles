@@ -1,0 +1,27 @@
+set spoolfile="~/.mail/iitb/INBOX"
+set folder="~/.mail/iitb"
+set mbox="~/.mail/iitb/INBOX"
+set record="~/.mail/iitb/Sent"
+set postponed="~/.mail/iitb/Drafts"
+set trash="~/.mail/iitb/Trash"
+
+set smtp_url="smtp://23b1080@smtp.iitb.ac.in:587/"
+set smtp_pass=`pass show email/iitb`
+set imap_user="23b1080@iitb.ac.in"
+set imap_pass=`pass show email/iitb`
+set mail_check=120
+set timeout=300
+set realname="Your Name"
+set from="23b1080@iitb.ac.in"
+
+# Mail syncing
+set sendmail="/usr/bin/msmtp -a iitb"
+set move=no
+set sort=reverse-threads
+set editor="nvim"
+
+macro index G "<change-folder>INBOX<enter>"
+macro index S "<save-message>+Sent<enter>"
+macro compose \cf "<change-folder>INBOX<enter>"
+
+source ~/.config/neomutt/themerc

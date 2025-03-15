@@ -1,0 +1,8 @@
+[opener]
+pdf = [
+    { run = "zathura \"$1\"", desc = "zathura", block = true, for = "unix" }
+]
+
+[[open]]
+mime = "application/pdf"
+use = ["pdf"]
