@@ -116,29 +116,44 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias ll='ls -alH'
+alias l='ls -alhH'
 
 export FZF_DEFAULT_OPTS='--reverse --height 40%'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-[ -f "/home/awez/.ghcup/env" ] && . "/home/awez/.ghcup/env" # ghcup-env
 
 source ~/.pyvenv/bin/activate
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
-export PDF_VIEWER='zathura'
-
 export FZF_ALT_C_OPTS='--walker-root=/home/awez/sem4'
-open-file() {
+
+open_file() {
+
+    viewer=$1
+
     file=$(fzf --style minimal --preview 'fzf-preview.sh {}' --bind 'focus:transform-header:file --brief {} --walker=file,dir,hidden,follow' < <(fd)) 
-    [ -n "$file" ] || return
+
+    if [[ ! -n "$file" ]]; then
+        zle reset-prompt
+        return
+    fi
+
     case "$file" in
-        *.pdf) $PDF_VIEWER "$file" >/dev/null 2>&1 & ;;
+        *.pdf) $viewer "$file" &>/dev/null &!;;
         *) nvim "$file" ;;
     esac
     zle reset-prompt
+
 }
 
-zle -N open-file
-bindkey '^o' open-file
+open_zathura() { open_file zathura }
+open_okular() { open_file okular }
+
+zle -N open_zathura
+bindkey '^o' open_zathura
+zle -N open_okular
+bindkey '^[^O' open_okular
+bindkey '^G' clear-screen
+bindkey '^@' clear-screen

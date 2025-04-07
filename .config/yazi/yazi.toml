@@ -1,8 +1,7 @@
 [opener]
-pdf = [
-    { run = "zathura \"$1\"", desc = "zathura", block = true, for = "unix" }
+pdff = [
+    { run = 'okular "$@" &', desc = "zathura", block = true, for = "unix" }
 ]
 
-[[open]]
-mime = "application/pdf"
-use = ["pdf"]
+[open]
+rules = [{mime = "application/pdf", use = ["pdff", "reveal"] }]

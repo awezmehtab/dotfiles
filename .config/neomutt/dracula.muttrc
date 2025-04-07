@@ -1,0 +1,109 @@
+# Nerd icons idea based on https://github.com/sheoak/neomutt-powerline-nerdfonts/
+# Dracula colors based on Dracula Theme by Paul Townsend <paul@caprica.org>
+
+
+# Formatting   ----------------------------------------------------------------------
+set date_format = "%a %d %h %H:%M"
+set index_format="  %zc %zs %zt  | %-35.35L   %@attachment_info@  %?M?~(%1M) &%-30.100s?%> %?Y?%Y &? %(!%a %d %h %H:%M)  "
+set pager_format="%n %T %s%*  %{!%d %b · %H:%M} %?X? %X?%P"
+set status_format = " %D %?u? %u ?%?R? %R ?%?d? %d ?%?t? %t ?%?F? %F ?%?p? %p? \n  \n"
+set compose_format="-- NeoMutt: Compose  [Approx. msg size: %l   Atts: %a]%>-"
+set attach_format = "%u%D  %T%-75.75d %?T? %5s · %m/%M?"
+set sidebar_format = '%D%?Z? [%Z]?%* %?S?%S?'
+index-format-hook attachment_info '=B text/calendar ~X 1' ' '
+index-format-hook attachment_info '=B text/calendar' "  "
+index-format-hook attachment_info '~X 1' "  "
+index-format-hook attachment_info '~A' "   "
+
+
+# General Colors   ------------------------------------------------------------------
+color normal default default                            # general text
+color error color231 color212                           # error messages
+color message default default                           # messages at the bottom
+color prompt default default                            # prompt text
+color search black color10                              # search highlight
+
+
+# Statusbar Colors   ----------------------------------------------------------------
+color status color141 default
+color status color7 color8 '([a-zA-Z0-9.,]|\[|\])(\s)'
+color status color7 color8 '(\s)([a-zA-Z0-9.,]|\[|\])'
+color status color7 color8 '(\% )'
+color status color7 color8 '(\S)'
+color status color8 default '(|)'
+color status color69 black '(` )'
+color status white color69 '([a-zA-Z0-9.]+)( )'
+color status green color8 ''
+color status blue color8 ''
+color status yellow color8 ''
+color status red color8 ''
+
+
+# Index Colors   --------------------------------------------------------------------
+color index color15 default '~N'
+color index color8 default '~R'
+color index color8 default '~Q'
+color index_collapsed color4 default
+color index color5 default '!~Q^~p'
+color index color22 default '~h X-Label..'
+color index color6 default '~F'
+color index color6 default '~F~N'
+color index color14 default '~F~R'
+color index color1 default '~D'
+color index color1 default '~D~N'
+color index color9 default '~D~R'
+color index color3 default '~T'
+color index color3 default '~T~N'
+color index color11 default '~T~R'
+color tree color8 color8
+color indicator default color8
+color index_date color8 default
+color index_label color6 default
+
+
+# Sidebar Colors   ------------------------------------------------------------------
+color sidebar_indicator color14 black
+color sidebar_highlight white color8
+color sidebar_ordinary color8 default
+color sidebar_divider color8 black
+color sidebar_flagged red black
+color sidebar_new green black
+color sidebar_unread color7 default
+
+
+# Message Headers   -----------------------------------------------------------------
+color hdrdefault color8 default
+
+
+# Message Body   --------------------------------------------------------------------
+color attachment color8 default
+color signature color8 default
+color body color0 color0 '<mailto:[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+>'
+color body color3 default '(https?|ftp)://[-.,/%~_:?&=#a-zA-Z0-9+]+'
+color body color8 default '(^[-_]*$)'
+color body color6 default '^(Date/Time|Location|Organiser|Invitees|Teams Meeting)(:| ~~)'
+color quoted color61 default
+color quoted1 color117 default
+color quoted2 color84 default
+color quoted3 color215 default
+color quoted4 color212 default
+color body color8 default '^(To|From|Sent|Subject):.*'
+
+
+# Misc  -----------------------------------------------------------------------------
+set to_chars=" "
+set status_chars = " "
+ifdef crypt_chars set crypt_chars = " "
+set flag_chars = "      "
+set hidden_tags = "unread,draft,flagged,passed,replied,attachment,signed,encrypted"
+tag-transforms "replied" "↻ "  \
+               "encrypted" "" \
+               "signed" "" \
+               "attachment" "" \
+
+tag-formats "replied" "GR" \
+            "encrypted" "GE" \
+            "signed" "GS" \
+            "attachment" "GA" \
+
+set markers=no

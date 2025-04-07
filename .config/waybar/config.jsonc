@@ -2,7 +2,7 @@
   "layer": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["temperature", "pulseaudio", "battery", "network", "backlight", "bluetooth"],
+  "modules-right": ["temperature", "pulseaudio",  "network", "backlight", "battery" ],
 
   "clock": {
     "format": "{:%H:%M}",
@@ -49,11 +49,11 @@
     //"on-click-right": "brightnessctl s 5%-",
   },
 
-  "bluetooth": {
-    "format": "󰂯 {status}",
-    "format-connected": "",
-    "interval": 5,
-    "tooltip": true,
-  }
+  //"bluetooth": {
+  //  "format": "󰂯 {status}",
+  //  "format-connected": "",
+  //  "interval": 5,
+  //  "tooltip": true,
+  //}
 
 }
