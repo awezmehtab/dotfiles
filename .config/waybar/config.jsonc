@@ -20,7 +20,8 @@
   "pulseaudio": {
     "format": "󰕾 {volume}%",
     "format-muted": "󰝟 {volume}%",
-    "format-bluetooth": "󰂯 {volume}%"
+    "format-bluetooth": "󰂯 {volume}%",
+    "on-click": "~/.config/waybar/bluetooth-ui.sh"
   },
 
   "battery": {
@@ -36,10 +37,12 @@
 
   "network": {
     "format-wifi": "{icon} {essid}",
+    //"format-wifi": "{icon}",
     "format-ethernet": "󰈀 Ethernet",
     "format-disconnected": "no net",
     "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨",],
     "tooltip": true,
+    "on-click": "~/.config/waybar/wifi-ui.sh"
   },
 
   "backlight": {
@@ -55,5 +58,11 @@
   //  "interval": 5,
   //  "tooltip": true,
   //}
+
+ "custom/menu": {
+    "format": " Menu",
+    "on-click": "~/.config/waybar/menu.sh",
+    "tooltip": false
+ }
 
 }

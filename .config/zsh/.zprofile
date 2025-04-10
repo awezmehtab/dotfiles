@@ -1,4 +1,6 @@
 export PATH="$HOME/.local/bin:$HOME/usr/bin:$PATH"
+export HISTFILE="$ZDOTDIR/.zsh_history"
+export GIT_CONFIG_GLOBAL=~/.config/git/config
 
 export MANPAGER="nvim +Man!"
 export MANWIDTH=80

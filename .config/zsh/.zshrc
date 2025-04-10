@@ -116,7 +116,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias ll='ls -alH'
-alias l='ls -alhH'
+alias l='ls -alhHv'
 
 export FZF_DEFAULT_OPTS='--reverse --height 40%'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
