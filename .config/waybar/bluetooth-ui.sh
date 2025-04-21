@@ -23,7 +23,7 @@ mapfile -t lines < <(
 [ ${#lines[@]} -eq 0 ] && notify-send "Bluetooth" "No devices found" && exit 1
 
 # Show menu
-choice=$(printf "%s\n" "${lines[@]}" | cut -d ' ' -f2- | tofi --prompt "Bluetooth:")
+choice=$(printf "%s\n" "${lines[@]}" | cut -d ' ' -f2- | tofi --placeholder-text "Bluetooth:")
 [ -z "$choice" ] && exit
 
 # Connect

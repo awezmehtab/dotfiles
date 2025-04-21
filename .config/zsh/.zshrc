@@ -123,6 +123,7 @@ export FZF_DEFAULT_OPTS='--reverse --height 40%'
 
 
 source ~/.pyvenv/bin/activate
+alias pyvenv="source $HOME/.pyvenv/bin/activate"
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
@@ -155,5 +156,4 @@ zle -N open_zathura
 bindkey '^o' open_zathura
 zle -N open_okular
 bindkey '^[^O' open_okular
-bindkey '^G' clear-screen
 bindkey '^@' clear-screen

@@ -1,2 +1,2 @@
 #!/bin/bash
-rofi -show drun
+tofi-drun
