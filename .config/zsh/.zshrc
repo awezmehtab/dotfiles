@@ -128,7 +128,7 @@ alias pyvenv="source $HOME/.pyvenv/bin/activate"
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
-export FZF_ALT_C_OPTS='--walker-root=/home/awez/sem4'
+export FZF_ALT_C_OPTS='--walker-root=/home/awez'
 
 open_file() {
 
@@ -149,11 +149,17 @@ open_file() {
 
 }
 
-open_zathura() { open_file zathura }
-open_okular() { open_file okular }
+open_zathura() { open_file /usr/bin/zathura }
+open_okular() { open_file /usr/bin/okular }
+
+zathura() {
+    /usr/bin/zathura "$@" 2>/dev/null 1>/dev/null &!
+}
 
 zle -N open_zathura
 bindkey '^o' open_zathura
 zle -N open_okular
 bindkey '^[^O' open_okular
 bindkey '^@' clear-screen
+
+alias eza='eza --total-size --git --icons -al'

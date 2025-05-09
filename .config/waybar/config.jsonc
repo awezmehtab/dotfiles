@@ -1,12 +1,15 @@
 {
   "layer": "top",
+  "position": "top",
+  "reload_style_on_change": true,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["temperature", "pulseaudio",  "network", "backlight", "battery" ],
+  "modules-right": ["temperature", "pulseaudio",  "custom/wifi", "backlight", "battery" ],
 
   "clock": {
     "format": "{:%H:%M}",
     "tooltip-format": "{:%A, %B %d, %Y}",
+    // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
   },
 
   "temperature": {
@@ -32,7 +35,9 @@
     },
     "format": "{icon} {capacity}%",
     "format-charging": "{icon} {capacity}%",
-    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󱟢" ],
+    "format-icons": {
+        "default":  ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󱟢"]
+    },
   },
 
   "network": {
@@ -42,13 +47,14 @@
     "format-disconnected": "no wifi",
     "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨",],
     "tooltip": true,
-    "on-click": "~/.config/waybar/wifi-ui.sh"
+    "on-click": "~/.config/waybar/wifi-ui.sh",
+    "max-length": 7
   },
 
   "backlight": {
     "device": "intel_backlight",
     "format": "󰃟 {percent}%",
-    //"on-click": "brightnessctl s 5%+",
+    "on-click": "~/.config/rofi/applets/bin/brightness.sh",
     //"on-click-right": "brightnessctl s 5%-",
   },
 
@@ -59,4 +65,12 @@
   //  "tooltip": true,
   //}
 
+  "custom/wifi": {
+    "format": "{}",
+    "exec": "~/.config/waybar/wifi-ui.sh",
+    "interval": 10,
+    "on-click": "~/.config/waybar/wifi-ui.sh",
+    "return-type": "json",
+    "tooltip": true
+  }
 }

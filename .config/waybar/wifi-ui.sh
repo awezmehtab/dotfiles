@@ -1,9 +1,38 @@
 #!/bin/bash
 
-IFS=$'\n'
-choices=$(nmcli -t -f SSID,SIGNAL device wifi list | sort -t: -k2 -nr | cut -d: -f1 | awk 'NF' | uniq)
-ssid=$(printf "%s\n" "$choices" | tofi --placeholder-text "Connect WiFi")
+# Get ESSID and signal strength
+ssid=$(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d: -f2)
+signal=$(nmcli -f IN-USE,SIGNAL dev wifi | awk '/^\*/ {print $2}')
 
-[ -z "$ssid" ] && exit
+case "$ssid" in
+    "ACT-ai_107753502023") essid="HOME";;
+    *) essid="$ssid";;
+esac
 
-nmcli device wifi connect "$ssid" || notify-send "WiFi" "Failed to connect to $ssid"
+# Map icons (like format-icons)
+if [ -z "$essid" ]; then
+    icon="󰤯"  # Disconnected
+elif [ "$signal" -ge 75 ]; then
+    icon="󰤨"
+elif [ "$signal" -ge 50 ]; then
+    icon="󰤥"
+elif [ "$signal" -ge 25 ]; then
+    icon="󰤢"
+else
+    icon="󰤟"
+fi
+
+# Aliases
+case "$essid" in
+    "MyHomeWiFi") alias="HomeNet";;
+    "OfficeWiFi") alias="OfficeNet";;
+    "") alias="no wifi";;
+    *) alias="$essid";;
+esac
+
+# Truncate to 7 chars like max-length
+alias_short=$(echo "$alias" | cut -c1-7)
+
+# Output for Waybar
+echo "{\"text\": \"$icon $alias_short\", \"tooltip\": \"$essid ($signal%)\"}"
+

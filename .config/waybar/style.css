@@ -2,27 +2,74 @@
     border: none;
     background: none;
     font-family: JetBrainsMono Nerd Font, sans-serif;
-    /*font-family: Roboto;*/
-    /*font-family: Noto Nerd Font;*/
     font-size: 14px;
-    color: #c0c0c0; /* Soft gray text */
+    color: #e0def4; /* Soft lavender */
+}
+
+.modules-right {
+    margin-right: 5px;
 }
 
 window#waybar {
-    /*background: rgba(20, 20, 20, 0.8);*/
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.8); /* Increased opacity for depth */
     padding: 5px;
 }
 
-#clock, #pulseaudio, #battery, #network, #backlight, #bluetooth, #temperature {
-    padding: 5px 10px;
+/* Workspace Buttons */
+#workspaces button {
+    color: #908caa;
+    padding: 0 8px;
+    margin: 0 2px;
+    background: rgba(60, 60, 60, 0.2);
+    border-radius: 4px;
 }
 
-/* Borders only between distinct sections */
+#workspaces button:hover {
+    background: rgba(80, 80, 80, 0.4);
+    color: #e0def4;
+}
 
-/* Color changes based on significance */
-#battery.critical { color: #ff5555; }  /* Red for low battery */
-#battery.warning { color: #ffaa00; }   /* Orange for medium battery */
-#battery.charging { color: #66cc66; }  /* Battery is charging */
-#pulseaudio.muted { color: #777777; }  /* Dim for muted volume */
-#network.disconnected { color: #ff5555; } /* Red for no network */
+#workspaces button.focused {
+    background: rgba(235, 188, 186, 0.2);
+    color: #ebbcba;
+    box-shadow: inset 0 -3px #ebbcba;
+}
+
+/* Shared module base */
+#clock, #pulseaudio, #battery, #network, #backlight, #custom-wifi, #bluetooth, #temperature {
+    padding: 0 10px;
+    margin: 0 2px;
+    min-height: 28px;
+    border-radius: 4px;
+    background: rgba(40, 40, 50, 0.35);
+    transition: background 0.2s ease;
+}
+
+#clock:hover,
+#pulseaudio:hover,
+#battery:hover,
+#network:hover,
+#backlight:hover,
+#bluetooth:hover,
+#temperature:hover,
+#custom-wifi:hover{
+    background: rgba(40, 40, 50, 0.90);
+}
+
+/* Individual colors */
+#clock         { color: #f6c177; }  /* Gold */
+#battery       { color: #9ccfd8; }  /* Foam (teal-blue) */
+#network       { color: #c4a7e7; }  /* Iris (purple) */
+#custom-wifi       { color: #c4a7e7; }  /* Iris (purple) */
+#backlight     { color: #ebbcba; }  /* Rose (soft red) */
+#bluetooth     { color: #31748f; }  /* Highlight blue */
+#temperature   { color: #ea9a97; }  /* Rose Pine red */
+#pulseaudio    { color: #908caa; }  /* Muted lavender */
+
+/* Special states */
+#battery.critical       { color: #eb6f92; }  /* Bright red */
+#battery.warning        { color: #f6c177; }  /* Gold */
+#battery.charging       { color: #a6da95; }  /* Soft green (Mint) */
+#pulseaudio.muted       { color: #6e6a86; }  /* Dimmed */
+#network.disconnected   { color: #eb6f92; }  /* Red */
+#custom-wifi.disconnected   { color: #eb6f92; }  /* Red */

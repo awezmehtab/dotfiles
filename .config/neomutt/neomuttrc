@@ -19,8 +19,9 @@ set postponed = "+Drafts"
 mailboxes =INBOX =Sent =Trash =Drafts =Junk
 
 # for colors
-source color.muttrc
+# source color.muttrc
 # source dracula.muttrc
+source rose-pine.muttrc
 
 set imap_keepalive=300
 set imap_idle=yes

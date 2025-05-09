@@ -1,0 +1,58 @@
+# Rose Pine inspired color scheme for NeoMutt
+
+# General UI
+color normal           white         default
+color indicator        black         white
+color status           brightwhite   default
+color error            brightred     default
+color message          cyan          default
+
+# Index View
+color index            brightcyan    default
+color index_author     magenta       default
+color index_subject    white         default
+color index_number     cyan          default
+
+# New mail highlighting
+color index            brightyellow  default "~N"
+color index_author     brightred     default "~N"
+color index_subject    brightwhite   default "~N"
+
+# Sidebar
+color sidebar_highlight brightcyan   default
+color sidebar_divider   blue         default
+color sidebar_flagged   brightmagenta default
+color sidebar_new       green        default
+
+# Headers
+color header           brightmagenta default "^(From)"
+color header           brightcyan    default "^(Subject)"
+color header           white         default
+
+# Quoted Text
+color quoted           green         default
+color quoted1          cyan          default
+color quoted2          magenta       default
+color quoted3          yellow        default
+color quoted4          red           default
+
+# Body Patterns
+color body brightblue  default "(https?|ftp)://[^ ]+"
+color body cyan        default '`[^`]+`'
+color body brightgreen default "^### .*"
+color body brightcyan  default "^## .*"
+color body blue        default "^# .*"
+color body yellow      default "^ *(-|\\*) .*"
+
+# Signature & GPG
+color signature        magenta       default
+color body brightblack default "^gpg: Good signature .*"
+color body brightred   default "^gpg: BAD signature from.*"
+mono  body             bold          "^gpg: Good signature"
+mono  body             bold          "^gpg: BAD signature from.*"
+
+# Mono Styles
+mono bold              bold
+mono underline         underline
+mono indicator         reverse
+mono error             bold
