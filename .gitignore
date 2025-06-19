@@ -1,0 +1,5 @@
+.config/neomutt/neomuttrc.bak
+.config/msmtp/
+.config/newsboat/urls
+.config/systemd/user
+usr/scripts/weather
