@@ -64,5 +64,4 @@ export GDBHISTFILE="$XDG_DATA_HOME"/gdb/history
 eval $(dircolors -b)
 export ZLS_COLORS=$LS_COLORS
 
-# use integrated GPU
-export DRI_PRIME=0
+export WALLPAPER="$XDG_PICTURES_DIR/wallpaper.png"
