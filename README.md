@@ -7,6 +7,8 @@ To use it, follow these steps:
 * `cd` into it.
 * Run `stow -D -t $HOME .` - this deletes all dangling symlinks created earlier
 * Run `stow -t $HOME .` which installs this new config.
+* If there are pre-existing files which this is trying to replace, and you're
+willing to, do `stow --adopt -t $HOME .`
 > **NOTE:** This removes all configs initially and the installs. So you might
 > need to reload few things (or even restart your system).
 
