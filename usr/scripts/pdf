@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# You can use this to open pdfs, this searches for every pdf file right from
+# the home directory, so take care of that (you wouldn't want to have too many)
+
+fd -e pdf . ~ | sed "s|$HOME|~|" | wofi | xargs -r zathura &>/dev/null &!

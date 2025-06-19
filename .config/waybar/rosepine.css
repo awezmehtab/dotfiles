@@ -1,0 +1,89 @@
+* {
+    border: none;
+    background: none;
+    font-family: JetBrainsMono Nerd Font, sans-serif;
+    font-size: 14px;
+    color: #e0def4; /* Soft lavender */
+}
+
+.modules-right {
+    margin-right: 5px;
+}
+
+window#waybar {
+    background: rgba(0, 0, 0, 0.8); /* Increased opacity for depth */
+    padding: 0px 5px;
+    margin: 10px 0px;
+}
+
+/* Workspace Buttons */
+#workspaces button {
+    color: #908caa;
+    padding: 0 8px;
+    margin: 0 2px 2px 2px;
+    /* background: rgba(60, 60, 60, 0.2); */
+    /* rn I wanna have no background */
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+}
+
+#workspaces button:hover {
+    background: rgba(80, 80, 80, 0.4);
+    color: #e0def4;
+}
+
+#workspaces button.focused {
+    background: rgba(235, 188, 186, 0.2);
+    color: #ebbcba;
+    box-shadow: inset 0 -3px #ebbcba;
+}
+
+#workspaces button.active {
+    /* background: rgba(235, 188, 186, 0.20); */ 
+    /* Slightly more visible than .focused */
+    background: rgba(40, 40, 50, 0.35);
+    color: #ebbcba; /* Consistent with other rose-pink elements */
+    font-weight: bold;
+}
+
+
+/* Shared module base */
+#clock, #pulseaudio, #battery, #network, #backlight, #custom-wifi, #bluetooth, #temperature {
+    padding: 0 10px;
+    margin: 0 2px 2px 2px;
+    min-height: 30px;
+    border-radius: 4px;
+    /* background: rgba(40, 40, 50, 0.35); */
+    /* rn I wanna have no background */
+    background: rgba(0, 0, 0, 0.8);
+    transition: background 0.2s ease;
+}
+
+#clock:hover,
+#pulseaudio:hover,
+#battery:hover,
+#network:hover,
+#backlight:hover,
+#bluetooth:hover,
+#temperature:hover,
+#custom-wifi:hover{
+    background: rgba(40, 40, 50, 0.90);
+}
+
+/* Individual colors */
+#clock         { color: #f6c177; }  /* Gold */
+#battery       { color: #9ccfd8; }  /* Foam (teal-blue) */
+#network       { color: #c4a7e7; }  /* Iris (purple) */
+#custom-wifi       { color: #c4a7e7; }  /* Iris (purple) */
+#backlight     { color: #ebbcba; }  /* Rose (soft red) */
+#bluetooth     { color: #31748f; }  /* Highlight blue */
+#temperature   { color: #ea9a97; }  /* Rose Pine red */
+#pulseaudio    { color: #908caa; }  /* Muted lavender */
+
+/* Special states */
+#battery.critical       { color: #eb6f92; }  /* Bright red */
+#battery.warning        { color: #f6c177; }  /* Gold */
+#battery.charging       { color: #a6da95; }  /* Soft green (Mint) */
+#pulseaudio.muted       { color: #6e6a86; }  /* Dimmed */
+#network.disconnected   { color: #eb6f92; }  /* Red */
+#custom-wifi.disconnected   { color: #eb6f92; }  /* Red */

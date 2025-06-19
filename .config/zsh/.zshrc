@@ -1,165 +1,107 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh//.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+zmodload zsh/complist
+autoload -U compinit && compinit
+autoload -U colors && colors
 
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+zstyle ':completion:*' completer _complete _ignored
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+# enables colored completion
+zstyle ':completion:*' list-colors "${(s.:.)ZLS_COLORS}"
+bindkey -e
+bindkey "^[[Z" reverse-menu-complete
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+setopt auto_param_slash
+setopt extended_glob
+setopt interactive_comments
+setopt autocd
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# autosuggestions
+# requires zsh-autosuggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# syntax highlighting
+# requires zsh-syntax-highlighting package
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+alias ll='ls -alHhv --color --group-directories-first'
+alias l='ls -alhHv --color --group-directories-first'
+alias ls='ls --color'
+alias less='less -R'
 
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-)
-
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
-
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-alias ll='ls -alH'
-alias l='ls -alhHv'
-
-export FZF_DEFAULT_OPTS='--reverse --height 40%'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+source <(fzf --zsh)
 
 source ~/.pyvenv/bin/activate
 alias pyvenv="source $HOME/.pyvenv/bin/activate"
 
+[[ -f ~/.cache/wal/colors.sh ]] && source ~/.cache/wal/colors.sh
+# Enable git prompt info
+autoload -Uz vcs_info
+
+zstyle ':vcs_info:git:*' formats '%F{$color6} %b%u%c%f '
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr ' *'
+zstyle ':vcs_info:*' stagedstr ' +'
+zstyle ':vcs_info:*' actionformats '%F{$color6} %b|%a%u%c%f '
+
+precmd() {
+  vcs_info
+}
+
+set -o PROMPT_SUBST
+
+NEWLINE=$'\n'
+# PROMPT="%K{#2E3440}%F{#E5E9F0}%D{ %d %b} %K{#3b4252}%F{#ECEFF4} %n %K{#4c566a} %~ %f%k ❯ "
+# PROMPT='%K{#2E3440}%F{#E5E9F0}%D{ %d %b} %K{#3b4252}%F{#ECEFF4} %n %K{#4c566a} %~ %f%k %(?.%F{#A3BE8C}.%F{#BF616A})❯%f '
+# PROMPT="%F{#4C566A}%D{ %d %b} %F{#5E6777} %n %F{#6B7280} %~ ❯ "
+# RPROMPT="$VIRTUAL_ENV_PROMPT"
+# source '/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme'
+# PROMPT='%K{#2E3440}%F{#88C0D0}%D{ %d %b} %K{#3B4252}%F{#88C0D0} %n %K{#4C566A}%F{#88C0D0} %~ ${vcs_info_msg_0_}%f%k %(?.%F{#A3BE8C}.%F{#BF616A})❯%f '
+# if using pywal
+PROMPT='%K{$background}%F{$color6}%D{ %d %b} \
+%K{$color0}%F{$color4} %n \
+%K{$color1}%F{$foreground} %~ ${vcs_info_msg_0_}%f%k \
+%(?.%F{$color1}.%F{$color3})❯%f '
+RPROMPT=""
+
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
-export FZF_ALT_C_OPTS='--walker-root=/home/awez'
-
 open_file() {
-
     viewer=$1
-
     file=$(fzf --style minimal --preview 'fzf-preview.sh {}' --bind 'focus:transform-header:file --brief {} --walker=file,dir,hidden,follow' < <(fd)) 
-
     if [[ ! -n "$file" ]]; then
         zle reset-prompt
         return
     fi
-
     case "$file" in
         *.pdf) $viewer "$file" &>/dev/null &!;;
         *) nvim "$file" ;;
     esac
     zle reset-prompt
-
 }
-
-open_zathura() { open_file /usr/bin/zathura }
-open_okular() { open_file /usr/bin/okular }
 
 zathura() {
     /usr/bin/zathura "$@" 2>/dev/null 1>/dev/null &!
 }
 
+open_zathura() { open_file zathura }
+
 zle -N open_zathura
 bindkey '^o' open_zathura
-zle -N open_okular
-bindkey '^[^O' open_okular
 bindkey '^@' clear-screen
 
-alias eza='eza --total-size --git --icons -al'
+WORDCHARS=''
+
+alias eza='eza --total-size --git --icons --sort=size -al'
+alias e='eza --total-size --git --icons -al'
+alias imv='imv'
+
+export GPG_TTY=$(tty)

@@ -1,9 +1,9 @@
 # where to find incoming mails
 set folder = "imaps://23b1080@iitb.ac.in@imap.iitb.ac.in:993"
-# outgoing mails
+# where to send outgoing mails
 set smtp_url = "smtp://23b1080@iitb.ac.in@smtp-auth.iitb.ac.in:587"
-set imap_pass = `pass show email/iitb`
-set smtp_pass = `pass show email/iitb`
+set imap_pass = "`pass show email/iitb`"
+set smtp_pass = "`pass show email/iitb`"
 
 set from = "23b1080@iitb.ac.in"
 set realname = "Awez"
@@ -18,15 +18,13 @@ set postponed = "+Drafts"
 # what mailboxes neomutt pays attention to
 mailboxes =INBOX =Sent =Trash =Drafts =Junk
 
-# for colors
-# source color.muttrc
-# source dracula.muttrc
-source rose-pine.muttrc
-
 set imap_keepalive=300
 set imap_idle=yes
 set imap_qresync=yes
 set header_cache=~/.cache/neomutt/headers
-set message_cachedir=~/.cache/neomutt/messages
+set message_cachedir=~/.cache/neomutt/
 set mail_check=60
 set sort=reverse-date
+
+source '~/.config/neomutt/colorrc'
+source '~/.config/neomutt/sidebarrc'

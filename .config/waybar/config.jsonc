@@ -1,76 +1,93 @@
 {
-  "layer": "top",
-  "position": "top",
-  "reload_style_on_change": true,
-  "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["clock"],
-  "modules-right": ["temperature", "pulseaudio",  "custom/wifi", "backlight", "battery" ],
+    "layer": "top",
+    "position": "top",
+    "reload_style_on_change": true,
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": [ "custom/vm", "temperature", "pulseaudio",  "custom/wifi", "backlight", "battery" ],
 
-  "clock": {
-    "format": "{:%H:%M}",
-    "tooltip-format": "{:%A, %B %d, %Y}",
-    // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-  },
-
-  "temperature": {
-    // "thermal-zone": 2,
-    // "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
-    // "critical-threshold": 80,
-     "format-critical": " {temperatureC}°C",
-    "format": " {temperatureC}°C"
-  },
-
-  "pulseaudio": {
-    "format": "󰕾 {volume}%",
-    "format-muted": "󰝟 {volume}%",
-    "format-bluetooth": "󰂯 {volume}%",
-    "on-click": "~/.config/waybar/bluetooth-ui.sh"
-  },
-
-  "battery": {
-    "interval": 3,
-    "states": {
-        "critical": 20,
-        "warning": 40
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip-format": "{:%A, %B %d, %Y}",
     },
-    "format": "{icon} {capacity}%",
-    "format-charging": "{icon} {capacity}%",
-    "format-icons": {
-        "default":  ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󱟢"]
+
+    "temperature": {
+        "format-critical": " {temperatureC}°C",
+        "format": " {temperatureC}°C",
+        "tooltip": false
     },
-  },
 
-  "network": {
-    "format-wifi": "{icon} {essid}",
-    //"format-wifi": "{icon}",
-    "format-ethernet": "󰈀 Ethernet",
-    "format-disconnected": "no wifi",
-    "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨",],
-    "tooltip": true,
-    "on-click": "~/.config/waybar/wifi-ui.sh",
-    "max-length": 7
-  },
+    "pulseaudio": {
+        "format": "󰕾 {volume}%",
+        "format-muted": "󰝟 {volume}%",
+        "format-bluetooth": "󰂯 {volume}%",
+        "on-click": "~/.config/waybar/bluetooth-ui.sh"
+    },
 
-  "backlight": {
-    "device": "intel_backlight",
-    "format": "󰃟 {percent}%",
-    "on-click": "~/.config/rofi/applets/bin/brightness.sh",
-    //"on-click-right": "brightnessctl s 5%-",
-  },
+    "battery": {
+        "interval": 3,
+        "states": {
+            "critical": 20,
+            "warning": 40
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "{icon} {capacity}%",
+        "format-icons": {
+            "default":  ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󱟢"]
+        },
+    },
 
-  //"bluetooth": {
-  //  "format": "󰂯 {status}",
-  //  "format-connected": "",
-  //  "interval": 5,
-  //  "tooltip": true,
-  //}
+    "network": {
+        "format-wifi": "{icon} {essid}",
+        //"format-wifi": "{icon}",
+        "format-ethernet": "󰈀 Ethernet",
+        "format-disconnected": "no wifi",
+        "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨",],
+        "tooltip": true,
+        "on-click": "~/.config/waybar/wifi-ui.sh",
+        "max-length": 7
+    },
 
-  "custom/wifi": {
-    "format": "{}",
-    "exec": "~/.config/waybar/wifi-ui.sh",
-    "interval": 10,
-    "on-click": "~/.config/waybar/wifi-ui.sh",
-    "return-type": "json",
-    "tooltip": true
-  }
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "󰃟 {percent}%",
+        "on-click": "~/.config/rofi/applets/bin/brightness.sh",
+        //"on-click-right": "brightnessctl s 5%-",
+        "tooltip": false
+    },
+
+    "custom/wifi": {
+        "format": "{}",
+        "exec": "~/.config/waybar/wifi-ui.sh",
+        "interval": 10,
+        "on-click": "~/.config/scripts/wifi",
+        "return-type": "json",
+        "tooltip": true
+    },
+
+    "custom/spotify": {
+        "format": "{}",
+        "exec": "~/.config/scripts/media",
+        "exec-if": "playerctl status &>/dev/null",
+        "interval": 1,
+        "on-click": "playerctl play-pause",
+        "tooltip": false
+    },
+
+    "custom/weather": {
+        "format": "{}",
+        "exec": "~/.config/scripts/weather",
+        "exec-if": "curl -sf --max-time 10 https://wttr.in > /dev/null",
+        "interval": 600,
+        "on-click": "firefox \"https://www.google.com/search?q=weather\"",
+        "on-click-right": "",
+        "tooltip": false
+    },
+
+    "custom/vm": {
+        "format": "{}",
+        "exec": "~/.config/scripts/vm",
+        "exec-if": "~/.config/scripts/vmcheck",
+        "interval": 2,
+    }
 }

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ss -tln | grep -q 5900

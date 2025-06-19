@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# this script will be used by waybar to determine the current song that's
+# playing. it'll use stdout of this script in which I'm currently passing
+# the title of whatever's playing
+
+status=$(playerctl status 2>/dev/null)
+if [ "$status" = "Playing" ]; then
+    echo -n $(playerctl metadata --format '{{title}}')
+    echo -n " "
+elif [ "$status" = "Paused" ]; then
+    echo -n $(playerctl metadata --format '{{title}}')
+    echo -n " "
+else
+    echo -n ""
+fi

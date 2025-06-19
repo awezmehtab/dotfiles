@@ -1,8 +1,13 @@
 window {
-    background-color: rgba(25, 25, 25, 0.9); /* Less transparent */
-    border: none; /* No border */
-    padding: 15px; /* More space around */
+    background-color: rgba(30, 30, 30, 0.80);  /* Transparent dark */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 0px solid rgba(100, 100, 100, 0.4); /* Sharp border */
+    padding: 8px;
     font-size: 18px;
+    font-family: "Roboto Mono", monospace;
+    margin: 30% auto 0 auto; /* 30% from top, centered horizontally */
+    width: 600px;
 }
 
 #input {
@@ -10,10 +15,17 @@ window {
     color: #bbbbbb;
     border: none;
     padding: 8px; /* More gap between text & border */
+
 }
 
 #inner-box, #outer-box {
     background-color: transparent; /* No extra background layer */
+}
+
+#input:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
 }
 
 #entry {
@@ -24,6 +36,7 @@ window {
 }
 
 #entry:selected {
-    background-color: rgba(60, 60, 60, 0.9); /* Subtle selection */
+    background-color: #9b9087; /* Subtle selection */
+    background: linear-gradient(90-deg, #bbccdd, #dd77ff);
     color: #ffffff;
 }

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+start=$(date +%s%N)
+# This gives a wofi menu to select the wallpapers, I've kept the wallpapers in
+# $XDG_PICTURES_DIR/wallpapers directory. I use hyprpaper which has a preset
+# wallpaper $XDG_PICTURES_HOME/wallpaper.png, so basically this scripts copies
+# copies a png file into the wallpaper.png, if it's jpg it converts it (slow)
+
+WALLPAPER_DIR="$XDG_PICTURES_DIR/wallpapers"
+WALLPAPER="$XDG_PICTURES_DIR/wallpaper.png"
+
+choice=$(fd -t f --format '{/.}' . $WALLPAPER_DIR | wofi -i -p "Choose wallpaper: ")
+[[ ! -z $choice ]] || exit 1
+
+choice=$(fd -t f $choice $WALLPAPER_DIR | head -1)
+
+if [[ "${choice##*.}" == "jpg" ]]; then
+    magick $choice $WALLPAPER
+else
+    cp "$choice" $WALLPAPER
+fi
+hyprctl hyprpaper reload ,"$WALLPAPER"
+$HOME/.pyvenv/bin/wal -i "$WALLPAPER" &> /tmp/wal.log
+killall -SIGUSR2 waybar
+
+notify-send "Set ${choice%.*} as wallpaper!"

@@ -1,0 +1,4 @@
+# vim: filetype=muttrc
+set sidebar_visible=yes
+
+macro index \CB "<enter-command>toggle sidebar_visible<enter>" "Toggle sidebar"

@@ -7,3 +7,6 @@ height=30%
 lines=8
 location=center
 font=monospace 20
+mode=drun
+show_icons=false
+allow_images=true

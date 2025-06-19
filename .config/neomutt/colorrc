@@ -1,0 +1,18 @@
+# Consistent dark background (color0), varied foregrounds
+color normal            color7          color0      # main text
+color indicator         color6          color0      # cursor line highlight
+color status            color4          color0      # status bar
+color tree              color4          color0
+color hdrdefault        color15         color0
+color quoted            color11         color0      # reddish quote
+color signature         color10         color0      # soft green/blue
+color bold              color13         color0
+color underline         color13         color0
+color error             color3          color0      # reddish error
+color message           color2          color0      # soft message
+color search            color1          color0      # highlight
+color tilde             color8          color0
+color markers           color5          color0
+color attachment        color12         color0
+
+color index color3 color0 "~N"  # Unread mails: bluish fg on dark bg

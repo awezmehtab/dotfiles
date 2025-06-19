@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Heavily relies on wttr.in to get weather, I've hardcoded the location for now
+# which is obviously unwanted. But I felt it's bad at getting weather atleast
+# from my IP address.
+
+curl -s "wttr.in/Visakhapatnam?format=1" | sed 's/+//g'

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+openvid() {
+    NAME="$(echo "$(command ls $XDG_VIDEOS_DIR)" | wofi -i -L 15)" || exit 0
+    mpv --force-window --idle --loop "$XDG_VIDEOS_DIR/$NAME" >/dev/null 2>&1 &
+    notify-send "Opened $XDG_VIDEOS_DIR/$NAME"
+}
+
+openvid
