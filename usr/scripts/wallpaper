@@ -20,7 +20,7 @@ else
     cp "$choice" $WALLPAPER
 fi
 hyprctl hyprpaper reload ,"$WALLPAPER"
-$HOME/.pyvenv/bin/wal -i "$WALLPAPER" &> /tmp/wal.log
+$PYTHON/bin/wal -i "$WALLPAPER" &> /tmp/wal.log
 killall -SIGUSR2 waybar
 
 notify-send "Set ${choice%.*} as wallpaper!"

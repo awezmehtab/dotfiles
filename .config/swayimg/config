@@ -1,0 +1,8 @@
+[general]
+mode = gallery
+
+[keys.gallery]
+w = exec ~/usr/scripts/set-wallpaper "%"
+
+[keys.viewer]
+w = exec ~/usr/scripts/set-wallpaper "%"

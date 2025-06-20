@@ -1,3 +1,31 @@
 #!/bin/bash
 
-# Gives a menu to select wifi and tries to connect to i
+# Gives a menu to select wifi and tries to connect to it
+
+choice=$(nmcli -f SSID device wifi list | grep -Fv -- '--' | tail -n +2 | wofi | xargs)
+[[ -n $choice ]] || exit 0
+echo "choice: '$choice'"
+
+connect_notify() {
+    notify-send "Connecting to $1..."
+    if nmcli device wifi connect "$1"; then
+        notify-send "WiFi" "Connected to $1"
+    else
+        notify-send "Wifi" "Couldn't connect to $1"
+    fi
+}
+
+if nmcli -t -f NAME connection show | grep -Fx -- "$choice"; then
+    connect_notify "$choice"
+else
+    sec=$(nmcli -t -f SSID,SECURITY device wifi list | grep -F -- "$choice:" | cut -d: -f2)
+    if [ -n "$sec" ]; then
+        notify-send "Enter password for $choice"
+        password=$(wofi --password)
+        if [ -n "$password" ]; then
+            connect_notify "$choice"
+        fi
+    else
+        connect_notify "$choice"
+    fi
+fi

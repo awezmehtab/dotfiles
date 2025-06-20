@@ -21,7 +21,7 @@
         "format": "󰕾 {volume}%",
         "format-muted": "󰝟 {volume}%",
         "format-bluetooth": "󰂯 {volume}%",
-        "on-click": "~/.config/waybar/bluetooth-ui.sh"
+        "on-click": "~/usr/scripts/bluetooth"
     },
 
     "battery": {
@@ -60,14 +60,14 @@
         "format": "{}",
         "exec": "~/.config/waybar/wifi-ui.sh",
         "interval": 10,
-        "on-click": "~/.config/scripts/wifi",
+        "on-click": "~/usr/scripts/wifi",
         "return-type": "json",
         "tooltip": true
     },
 
     "custom/spotify": {
         "format": "{}",
-        "exec": "~/.config/scripts/media",
+        "exec": "~/usr/scripts/media",
         "exec-if": "playerctl status &>/dev/null",
         "interval": 1,
         "on-click": "playerctl play-pause",
@@ -75,8 +75,8 @@
     },
 
     "custom/weather": {
-        "format": "{}",
-        "exec": "~/.config/scripts/weather",
+        "format": "}",
+        "exec": "~/usr/scripts/weather",
         "exec-if": "curl -sf --max-time 10 https://wttr.in > /dev/null",
         "interval": 600,
         "on-click": "firefox \"https://www.google.com/search?q=weather\"",
@@ -86,8 +86,8 @@
 
     "custom/vm": {
         "format": "{}",
-        "exec": "~/.config/scripts/vm",
-        "exec-if": "~/.config/scripts/vmcheck",
+        "exec": "~/usr/scripts/vm",
+        "exec-if": "~/usr/scripts/vmcheck",
         "interval": 2,
     }
 }

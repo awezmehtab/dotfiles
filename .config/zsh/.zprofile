@@ -19,7 +19,7 @@ export SAVEHIST=10000
 export HISTSIZE=10000
 
 typeset -U path
-path=($HOME/.local/bin $HOME/usr/bin $path $HOME/.config/scripts)
+path=($HOME/.local/bin $HOME/usr/bin $path $HOME/usr/scripts)
 export GIT_CONFIG_GLOBAL=~/.config/git/config
 
 export MANPAGER="nvim +Man!"
@@ -65,3 +65,5 @@ eval $(dircolors -b)
 export ZLS_COLORS=$LS_COLORS
 
 export WALLPAPER="$XDG_PICTURES_DIR/wallpaper.png"
+export PYTHON="$HOME/usr/.pyvenv/"
+export SCRIPTS="$HOME/usr/scripts/"
