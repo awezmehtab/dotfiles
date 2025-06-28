@@ -2,8 +2,9 @@
 set folder = "imaps://23b1080@iitb.ac.in@imap.iitb.ac.in:993"
 # where to send outgoing mails
 set smtp_url = "smtp://23b1080@iitb.ac.in@smtp-auth.iitb.ac.in:587"
-set imap_pass = "`pass show email/iitb`"
-set smtp_pass = "`pass show email/iitb`"
+set pass = "`pass show email/iitb`"
+set imap_pass = $pass
+set smtp_pass = $pass
 
 set from = "23b1080@iitb.ac.in"
 set realname = "Awez"

@@ -27,5 +27,5 @@ bind-key x pb-delete
 text-width 80
 
 browser "~/.config/scripts/img"
-macro y set browser "~/.config/scripts/yt"; open-in-browser ; set browser "xdg-open"
-macro b set browser "~/.config/scripts/img"; open-in-browser ; set browser "xdg-open"
+macro y set browser "~/usr/scripts/yt"; open-in-browser ; set browser "xdg-open"
+macro b set browser "~/usr/scripts/img"; open-in-browser ; set browser "xdg-open"

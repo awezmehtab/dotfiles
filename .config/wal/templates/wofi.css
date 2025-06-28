@@ -1,0 +1,40 @@
+window {{
+    background-color: rgba({background.rgb}, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 0px solid {color8};
+    padding: 8px;
+    font-size: 18px;
+    font-family: "Roboto Mono", monospace;
+    margin: 30% auto 0 auto;
+    width: 600px;
+}}
+
+#input {{
+    background-color: rgba(35, 35, 35, 0.9);
+    color: {foreground};
+    border: none;
+    padding: 8px;
+}}
+
+#inner-box, #outer-box {{
+    background-color: transparent;
+}}
+
+#input:focus {{
+    outline: none;
+    border: none;
+    box-shadow: none;
+}}
+
+#entry {{
+    background-color: transparent;
+    color: {foreground};
+    padding: 10px;
+    border-radius: 0px;
+}}
+
+#entry:selected {{
+    background-color: {color4};
+    color: {background};
+}}

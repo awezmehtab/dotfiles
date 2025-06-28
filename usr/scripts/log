@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# logs the time you're on your computer, which apps you're using
+
+date=$(date +'%d-%b-%y')
+
+mapfile -t classes < <(hyprctl clients -j | jq -r '.[].class' | sort -u)
+active=$(hyprctl activewindow -j | jq -r '.class // empty')
+
+# names which you don't like, can be changed here
+declare -A name
+name["org.pwmt.zathura"]="zathura"
+
+export XDG_DATA_HOME="/home/awez/.local/share/"
+declare -A apps
+for class in "${classes[@]}"; do
+    app=${name[$class]:-$class}
+    app="${app,,}"
+    app="${app// /_}"
+    file="${XDG_DATA_HOME:-"/home/awez/.local/share"}/usage/$app-$date.csv"
+    apps[$file]="true"
+    [[ -e "$file" ]] || touch "$file"
+done
+
+app=${name[$active]:-$active}
+app="${app,,}"
+app="${app// /_}"
+file="${XDG_DATA_HOME:-"/home/awez/.local/share"}/usage/$app-$date-active.csv"
+apps[$file]="true"
+[[ -e "$file" ]] || touch "$file"
+
+shopt -s nullglob
+LOGDIR="${XDG_DATA_HOME}/usage"
+mkdir -p "$LOGDIR"
+time=$(date +'%H:%M')
+for file in "$LOGDIR"/*-"$date".csv; do
+    last=$(tail -1 "$file")
+    if [[ -n ${apps[$file]} ]]; then
+        [[ -z "$last" || "$last" != *, ]] && echo "$time," >> "$file" || true;
+    else
+        [[ "$last" == *, ]] && {
+            sed -i '$c\'"$last$time" "$file"
+        } || true
+    fi
+done
+
+for file in "$LOGDIR"/*-"$date"-active.csv; do
+    last=$(tail -1 "$file")
+    if [[ -n ${apps[$file]} ]]; then
+        [[ -z "$last" || "$last" != *, ]] && echo "$time," >> "$file" || true;
+    else
+        [[ "$last" == *, ]] && {
+            sed -i '$c\'"$last$time" "$file"
+        } || true
+    fi
+done

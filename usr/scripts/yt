@@ -25,8 +25,7 @@ else
     notify-send "we have subtitles!"
 fi
 
-notify-send "Youtube!" "Started streaming the video"
+notify-send "Youtube!" "Starting the stream..."
 mpv --ytdl-format="bv*+ba/best" \
     --sub-file="$XDG_CACHE_HOME/yt/${video_id}.en.vtt" \
     "$link" &>/dev/null &!
-notify-send "Youtube!" "Done streaming the video"

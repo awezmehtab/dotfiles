@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+if ! [ -f "$1" ]; then
+	exit 1
+fi
+
+pdf="$(realpath "$1")"
+dpi=200  # sharp & fast
+
+tmpimg="$(mktemp --suffix=.jpg)"
+thumbnail="$(uuidgen).jpg"
+cache="$HOME/.cache/pdfthumb"
+index="$cache/index.json"
+
+mkdir -p "$cache"
+
+# Check if cached
+if [ -f "$index" ]; then
+	existing="$(jq -r ". \"$pdf\"" <"$index")"
+	if [[ "$existing" != "null" && -f "$cache/$existing" ]]; then
+		echo "$cache/$existing"
+		exit 0
+	fi
+fi
+
+# Render PDF without forced size to preserve natural aspect ratio
+if ! pdftoppm -jpeg -singlefile -r "$dpi" -f 1 -l 1 \
+	"$pdf" "$tmpimg" >/dev/null 2>&1; then
+	rm -f "$tmpimg".jpg
+	exit 1
+fi
+
+mv "$tmpimg".jpg "$cache/$thumbnail"
+
+# Update index
+if [[ ! -f "$index" ]]; then
+	echo "{\"$pdf\": \"$thumbnail\"}" >"$index"
+else
+	jq -r --arg "$pdf" "$thumbnail" '. + {($pdf): $thumbnail}' <"$index" >"$index.tmp" && mv "$index.tmp" "$index"
+fi
+
+echo "$cache/$thumbnail"

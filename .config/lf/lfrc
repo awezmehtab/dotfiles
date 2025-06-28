@@ -1,0 +1,19 @@
+set previewer "~/.config/lf/previewer"
+set cleaner ~/.config/lf/cleaner
+
+# set hidden
+
+map U !du -csh *
+map <enter> open
+
+set ifs "\n"
+
+cmd open ${{
+    case $(file --mime-type -Lb $f) in
+        application/pdf) setsid -f zathura "$f" > /dev/null 2>&1 & ;;
+        video/*)         setsid -f mpv "$f" > /dev/null 2>&1 ;;
+        image/*)         setsid -f imv "$f" > /dev/null 2>&1 ;;
+        text/*)          nvim $fx;;
+        *)               setsid -f xdg-open "$f" > /dev/null 2>&1 ;;
+    esac
+}}

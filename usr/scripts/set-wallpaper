@@ -20,7 +20,11 @@ else
     cp "$choice" $WALLPAPER
 fi
 hyprctl hyprpaper reload ,"$WALLPAPER"
-$PYTHON/bin/wal -i "$WALLPAPER" &> /tmp/wal.log
+if [[ -n $WAL_BACKEND ]]; then
+    $PYTHON/bin/wal --backend "$WAL_BACKEND" -i "$WALLPAPER" &> /tmp/wal.log
+else
+    $PYTHON/bin/wal -i "$WALLPAPER" &> /tmp/wal.log
+fi
 killall -SIGUSR2 waybar
 
 notify-send "Set ${choice%.*} as wallpaper!"

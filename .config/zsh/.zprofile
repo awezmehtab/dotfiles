@@ -31,7 +31,7 @@ export PYTHON_HISTORY="$XDG_STATE_HOME/python/history"
 path=($path $HOME/.ghcup/bin $HOME/.cabal/bin)
 
 # For screenshots
-export HYPRSHOT_DIR="$XDG_PICTURES_DIR/Screenshots"
+export HYPRSHOT_DIR="$XDG_PICTURES_DIR/screenshots"
 
 # GPG Password
 export GPG_TTY=$(tty)
@@ -54,7 +54,7 @@ export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
 
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
-. "$XDG_DATA_HOME/cargo/env"
+[[ -f "$XDG_DATA_HOME/cargo/env" ]] && . "$XDG_DATA_HOME/cargo/env"
 
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 
@@ -67,3 +67,4 @@ export ZLS_COLORS=$LS_COLORS
 export WALLPAPER="$XDG_PICTURES_DIR/wallpaper.png"
 export PYTHON="$HOME/usr/.pyvenv/"
 export SCRIPTS="$HOME/usr/scripts/"
+export WAL_BACKEND= #  "modern_colorthief"

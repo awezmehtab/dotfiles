@@ -1,9 +1,11 @@
+ssource() {
+    [[ -f "$1" ]] && [[ -r "$1" ]] && source "$1"
+}
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh//.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+ssource "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 
 zmodload zsh/complist
 autoload -U compinit && compinit
@@ -23,37 +25,37 @@ setopt interactive_comments
 setopt autocd
 
 # requires zsh-autosuggestions and zsh-syntax-highlighting packages
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source <(fzf --zsh)
-source ~/usr/.pyvenv/bin/activate
+# this varies highly based on where your package manager places these files
+ssource /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+ssource /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ssource <(fzf --zsh)
+ssource ~/usr/.pyvenv/bin/activate
 
 [[ -f ~/.cache/wal/colors.sh ]] && source ~/.cache/wal/colors.sh
 
 # Enable git prompt info
 autoload -Uz vcs_info
-zstyle ':vcs_info:git:*' formats '%F{$color6} %b%u%c%f '
+zstyle ':vcs_info:git:*' formats ' %b%u%c%f'
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr ' *'
 zstyle ':vcs_info:*' stagedstr ' +'
-zstyle ':vcs_info:*' actionformats '%F{$color6} %b|%a%u%c%f '
+zstyle ':vcs_info:*' actionformats ' %b|%a%u%c%f'
 
 precmd() {
   vcs_info
 }
 set -o PROMPT_SUBST
-NEWLINE=$'\n'
 # source '/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme'
 # [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 # if using pywal
 PROMPT='%K{$background}%F{$color6}%D{ %d %b} \
 %K{$color0}%F{$color4} %n \
-%K{$color1}%F{$foreground} %~ ${vcs_info_msg_0_}%f%k \
+%K{$color0}%F{$color8} %~ ${vcs_info_msg_0_}%f%k \
 %(?.%F{$color1}.%F{$color3})❯%f '
 RPROMPT=""
 
-source $ZDOTDIR/aliases.zsh
-bindkey '^@' clear-screen
-WORDCHARS=''
-export GPG_TTY=$(tty)
+ssource $ZDOTDIR/aliases.zsh
+ssource $ZDOTDIR/funcs.zsh
+ssource $ZDOTDIR/binds.zsh
+ssource $ZDOTDIR/vars.zsh
