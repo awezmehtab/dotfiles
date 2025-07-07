@@ -28,8 +28,7 @@ setopt autocd
 # this varies highly based on where your package manager places these files
 ssource /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ssource /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-ssource <(fzf --zsh)
-ssource ~/usr/.pyvenv/bin/activate
+source <(fzf --zsh)
 
 [[ -f ~/.cache/wal/colors.sh ]] && source ~/.cache/wal/colors.sh
 
@@ -59,3 +58,4 @@ ssource $ZDOTDIR/aliases.zsh
 ssource $ZDOTDIR/funcs.zsh
 ssource $ZDOTDIR/binds.zsh
 ssource $ZDOTDIR/vars.zsh
+ssource $ZDOTDIR/secrets.zsh

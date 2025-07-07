@@ -21,6 +21,8 @@ if [[ ! -f "$sub_file" ]]; then
     yt-dlp --write-auto-sub --sub-lang en --skip-download \
     -o "$XDG_CACHE_HOME/yt/${video_id}" "$link"
     notify-send "Done downloading subtitles"
+    sed -i -E 's/<[^>]+>//g' "$XDG_CACHE_HOME/yt/${video_id}.en.vtt"
+    echo "removed the things from $XDG_CACHE_HOME/yt/${video_id}.en.vtt"
 else
     notify-send "we have subtitles!"
 fi

@@ -16,3 +16,4 @@ color markers           color5          color0
 color attachment        color12         color0
 
 color index color3 color0 "~N"  # Unread mails: bluish fg on dark bg
+color index color1 default "~O"

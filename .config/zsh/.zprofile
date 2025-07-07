@@ -54,7 +54,10 @@ export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
 
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
-[[ -f "$XDG_DATA_HOME/cargo/env" ]] && . "$XDG_DATA_HOME/cargo/env"
+ssource() {
+    [[ -f "$1" ]] && [[ -r "$1" ]] && source "$1"
+}
+ssource "$XDG_DATA_HOME/cargo/env"
 
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 
@@ -66,5 +69,10 @@ export ZLS_COLORS=$LS_COLORS
 
 export WALLPAPER="$XDG_PICTURES_DIR/wallpaper.png"
 export PYTHON="$HOME/usr/.pyvenv/"
+ssource ~/usr/.pyvenv/bin/activate
 export SCRIPTS="$HOME/usr/scripts/"
 export WAL_BACKEND= #  "modern_colorthief"
+
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
+export PATH="$PATH:$XDG_DATA_HOME/npm/bin"

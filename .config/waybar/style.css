@@ -39,8 +39,8 @@ window#waybar {
 }
 
 #workspaces button.active {
-    background: rgba(60, 56, 54, 0.35); 
-    /* background: rgba(0, 0, 0, 0.8); */
+    /* background: rgba(60, 56, 54, 0.35);  */
+    background: rgba(0, 0, 0, 0.8);
     color: @foreground;
     font-weight: bold;
 }
@@ -89,3 +89,8 @@ window#waybar {
 #pulseaudio.muted       { color: #4F4C46; }  /* walnut-brown */
 #network.disconnected   { color: #ea9a97; }  /* Red retained */
 #custom-wifi.disconnected   { color: #ea9a97; }
+
+tooltip {
+    background-color: black;
+    color: white; /* optional */
+}

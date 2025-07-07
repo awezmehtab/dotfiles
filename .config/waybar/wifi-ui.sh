@@ -4,10 +4,7 @@
 ssid=$(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d: -f2)
 signal=$(nmcli -f IN-USE,SIGNAL dev wifi | awk '/^\*/ {print $2}')
 
-case "$ssid" in
-    "ACT-ai_107753502023") essid="HOME";;
-    *) essid="$ssid";;
-esac
+essid="$ssid"
 
 # Map icons (like format-icons)
 if [ -z "$essid" ]; then
@@ -24,8 +21,6 @@ fi
 
 # Aliases
 case "$essid" in
-    "MyHomeWiFi") alias="HomeNet";;
-    "OfficeWiFi") alias="OfficeNet";;
     "") alias="no wifi";;
     *) alias="$essid";;
 esac
@@ -35,4 +30,3 @@ alias_short=$(echo "$alias" | cut -c1-7)
 
 # Output for Waybar
 echo "{\"text\": \"$icon $alias_short\", \"tooltip\": \"$essid ($signal%)\"}"
-

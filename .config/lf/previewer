@@ -22,6 +22,13 @@ case "$(file -Lb --mime-type "$file")" in
     application/pdf)
         draw "$("$HOME/.config/lf/pdfthumb" "$file" "$w" "$h")"
         ;;
+    font/*|application/x-font-*|application/font-sfnt|application/vnd.ms-opentype)
+        tmpimg=$(mktemp --suffix=.png)
+        magick -size 800x600 -background white -fill black -font "$file" -pointsize 48 \
+            caption:@"$HOME/.config/lf/charset.txt" -bordercolor white -border 20x20 "$tmpimg"
+        draw "$tmpimg"
+        rm -f "$tmpimg"
+        ;;
 esac
 
 pistol "$file"

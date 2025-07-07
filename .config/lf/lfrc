@@ -5,6 +5,8 @@ set cleaner ~/.config/lf/cleaner
 
 map U !du -csh *
 map <enter> open
+map H set hidden!
+map sz !du -sh -- "$f"
 
 set ifs "\n"
 
