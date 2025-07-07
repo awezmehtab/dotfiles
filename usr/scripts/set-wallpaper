@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# similar to the wallpaper script, this doesn't give out a wofi prompt, this
+# just takes the first argument and sets it as the wallpaper
+
+echo "Running with: $1" >> /tmp/wallpaper.log
+
+WALLPAPER_DIR="$XDG_PICTURES_DIR/wallpapers"
+WALLPAPER="$XDG_PICTURES_DIR/wallpaper.png"
+
+if [[ $# != 1 ]]; then
+    echo "incorrect number of args"
+    exit 1
+fi
+choice=$1
+
+if [[ "${choice##*.}" == "jpg" ]]; then
+    magick $choice $WALLPAPER
+else
+    cp "$choice" $WALLPAPER
+fi
+hyprctl hyprpaper reload ,"$WALLPAPER"
+if [[ -n $WAL_BACKEND ]]; then
+    $PYTHON/bin/wal --backend "$WAL_BACKEND" -i "$WALLPAPER" &> /tmp/wal.log
+else
+    $PYTHON/bin/wal -i "$WALLPAPER" &> /tmp/wal.log
+fi
+killall -SIGUSR2 waybar
+
+notify-send "Set ${choice%.*} as wallpaper!"

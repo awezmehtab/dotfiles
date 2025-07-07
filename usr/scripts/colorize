@@ -1,0 +1,31 @@
+#!/bin/bash
+
+source ~/.cache/wal/colors.sh
+
+# Use two nice colors from your pywal theme
+start_hex=$color1  # e.g., blue
+end_hex=$color5    # e.g., purple
+
+text="Pleasant Gradient"
+
+# Convert hex to RGB
+hex_to_rgb() {
+    hex="${1#"#"}"
+    r=$((16#${hex:0:2}))
+    g=$((16#${hex:2:2}))
+    b=$((16#${hex:4:2}))
+    echo "$r $g $b"
+}
+
+read sr sg sb <<< $(hex_to_rgb "$start_hex")
+read er eg eb <<< $(hex_to_rgb "$end_hex")
+
+len=${#text}
+for ((i=0; i<len; i++)); do
+    r=$(( sr + (er - sr) * i / (len - 1) ))
+    g=$(( sg + (eg - sg) * i / (len - 1) ))
+    b=$(( sb + (eb - sb) * i / (len - 1) ))
+    printf "\033[38;2;%d;%d;%dm%s" "$r" "$g" "$b" "${text:i:1}"
+done
+
+echo -e "\033[0m"

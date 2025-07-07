@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# A spinning animation, useful in scripts to denote waiting
+
+while true; do for char in / - \\ \|; do echo -en "\r$char"; sleep 0.1; done done

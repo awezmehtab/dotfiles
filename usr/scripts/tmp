@@ -1,0 +1,10 @@
+#!/bin/bash
+
+while true; do
+    if ! hyprctl activewindow -j | grep -q '"class":'; then
+        echo "Locked"
+    else
+        echo "Unlocked"
+    fi
+    sleep 1
+done

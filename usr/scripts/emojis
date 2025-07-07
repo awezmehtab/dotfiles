@@ -1,0 +1,11 @@
+#!/bin/bash
+# Give a wofi list of all unicode characters (mostly emojis) to copy. Shows the
+# selected characters in dunst if running. Expects the emoji file in the same
+# directory as the script.
+
+emoji=$(cat "$SCRIPTS/all-emojis.txt" | wofi -i)
+
+[ -z "$emoji" ] && exit 1
+
+echo "$emoji" | awk '{print $1}' | tr -d '\n' | wl-copy
+pgrep -x dunst >/dev/null && notify-send "$emoji copied to clipboard"

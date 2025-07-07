@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# you can view images from links too, downloading the image into a tmp file
+# and viewing it.
+
+if [[ $# != 1 ]]; then
+    notify-send "img" "incorrect number of args"
+fi
+
+url=$1
+if echo "$url" | grep -qE '\.(jpg|jpeg|png|gif|webp|bmp)$'; then
+    tmpfile="$(fd -e jpg -e png --max-results 1 "tmp\..*$(basename $url)\.(jpg|png)" /tmp)"
+    if [[ -z $tmpfile ]]; then
+        tmpfile=$(mktemp --suffix="$(basename "$url")")
+        curl -sL "$url" -o "$tmpfile"
+    fi
+    imv "$tmpfile" &>/dev/null &
+elif echo "$url" | grep -qE 'www.youtube.com'; then
+    $HOME/.config/scripts/yt "$url"
+else
+    xdg-open "$url"
+fi
+

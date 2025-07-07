@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+percent=$(cat /sys/class/power_supply/BAT0/capacity)
+
+icons=("󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󱟢")
+
+case "$percent" in
+  [0-9])       icon="${icons[0]}" ;;  # 0-9%
+  1[0-9])      icon="${icons[1]}" ;;  # 10-19%
+  2[0-9])      icon="${icons[2]}" ;;  # 20-29%
+  3[0-9])      icon="${icons[3]}" ;;  # 30-39%
+  4[0-9])      icon="${icons[4]}" ;;  # 40-49%
+  5[0-9])      icon="${icons[5]}" ;;  # 50-59%
+  6[0-9])      icon="${icons[6]}" ;;  # 60-69%
+  7[0-9])      icon="${icons[7]}" ;;  # 70-79%
+  8[0-9])      icon="${icons[8]}" ;;  # 80-89%
+  9[0-9]|100)  icon="${icons[9]}" ;;  # 90-100%
+  *)           icon="󰂑" ;;  # Unknown case
+esac
+
+echo "$icon $percent%"

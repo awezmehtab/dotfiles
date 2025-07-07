@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if hyprctl activeworkspace | grep -q "special:magic"; then
+  hyprctl dispatch togglespecialworkspace magic
+fi

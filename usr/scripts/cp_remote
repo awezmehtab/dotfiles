@@ -1,0 +1,10 @@
+#!/bin/bash
+
+REMOTE_USER="awez"
+REMOTE_HOST="gpu-dev.proactai.in"
+REMOTE_PATH="/home/awez/tmp/remote_clipboard.txt"
+LOCAL_PATH="/home/awez/tmp/remote_clipboard.txt"
+
+scp "$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH" "$LOCAL_PATH" 2>/dev/null
+cat "$LOCAL_PATH" | wl-copy
+notify-send "Remote yank loaded into clipboard"

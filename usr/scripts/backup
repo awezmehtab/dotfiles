@@ -1,0 +1,53 @@
+#!/bin/bash
+
+BACKUP_DEV=/dev/nvme0n1p4
+BACKUP_DIR=
+MAX=48318382080
+export DISPLAY=:0
+export XDG_RUNTIME_DIR=/run/user/1000
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
+# Backs up your home directory to $BACKUP_DEV, you can set it to your pendrive
+# which you want to backup to, or a backup drive. $MAX is the maximum amount of
+# backup you're affording to keep. $BACKUP_DIR is where your backup is stored
+# The display and dbus vars are required if you're running this as a cron job
+# Please make it owned by something privileged, as this has to run in priv mode
+
+err() {
+    [[ -n $1 ]] && echo "$1" >&2
+    exit 1
+}
+
+[[ -b $BACKUP_DEV ]] || err "Device not found"
+
+tmpdir=$(mktemp -d)
+[[ -d $tmpdir ]] || err "Couldn't create tmpdir"
+
+over() {
+    [[ $1 == "delete" ]] && umount "$tmpdir";
+    rmdir "$tmpdir";
+}
+
+mount $BACKUP_DEV $tmpdir || {
+    if mountpoint -q $tmpdir; then
+        over delete
+    else
+        over
+    fi
+    err "Mount failure"
+}
+
+size=$(du -sc /home | tail -1 | awk '{print $1}')
+((size <= MAX)) || err "Size of your home dir exceeded $(numfmt $MAX --to=iec)"
+
+notify() {
+    local msg="$1"
+    sudo -u "awez" DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" notify-send "$msg"
+}
+
+notify "Backup started..."
+if rsync --delete -aAX /home/ "$tmpdir/$BACKUP_DIR"; then
+    notify "Backed up!"
+else
+    notify "Partial backup, there was some error"
+fi
+over delete

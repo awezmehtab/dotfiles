@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# made specifically for hyprland goes to a specific workspace, but also toggles
+# off special workspace if current one is special. I've allowed any string as
+# argument and haven't kept checks for usecases like 'previous' etc. if there's
+# a second argument, the switching argument happens conditionally.
+
+# [[ $1 =~ ^[1-9]$ ]] || exit 1
+
+active=$(hyprctl -j monitors | jq -r '.[] | select(.focused==true).specialWorkspace.name | split(":") | if length > 1 then .[1] else "" end')
+activename=$(hyprctl activewindow -j | jq -r '.workspace.name')
+
+if [[ -z $2 || "$2" == "$activename" ]]; then
+    hyprctl dispatch workspace $1
+fi
+
+if [[ ${#active} -gt 0 ]]; then
+    hyprctl dispatch togglespecialworkspace "$active"
+fi

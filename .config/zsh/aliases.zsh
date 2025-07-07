@@ -1,0 +1,13 @@
+alias l='ls -lHhv --color --group-directories-first'
+alias ll='ls -alhHv --color --group-directories-first'
+alias ls='ls --color'
+alias less='less -R'
+alias eza='eza --total-size --git --icons --sort=size -al'
+alias e='eza --total-size --git --icons -al'
+alias pyvenv="source $HOME/usr/.pyvenv/bin/activate"
+alias gst='git status'
+alias ga='git add'
+alias gc='git commit'
+alias glog='git log'
+alias gp='git push'
+alias gl='git pull'

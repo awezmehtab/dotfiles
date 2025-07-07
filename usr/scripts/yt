@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# This streams the youtube video in the best quality available, I've tried to
+# keep auto generated subtitles by downloading them in ~/Media/Youtube/. You
+# need to enter the link first
+
+if [[ $# == 1 ]]; then
+    link=$1
+else
+    link=$(wofi --prompt "Enter youtube video link")
+fi
+[[ -n $link ]] || exit 1
+
+video_id=$(echo "$link" | grep -oE 'v=([a-zA-Z0-9_-]+)' | cut -d= -f2)
+[[ -z $video_id ]] && video_id=$(echo "$link" | grep -oE 'youtu\.be/([a-zA-Z0-9_-]+)' | cut -d/ -f2)
+
+sub_file="$XDG_CACHE_HOME/yt/${video_id}.en.vtt"
+
+if [[ ! -f "$sub_file" ]]; then
+    notify-send "Trying to download subtitles"
+    yt-dlp --write-auto-sub --sub-lang en --skip-download \
+    -o "$XDG_CACHE_HOME/yt/${video_id}" "$link"
+    notify-send "Done downloading subtitles"
+    sed -i -E 's/<[^>]+>//g' "$XDG_CACHE_HOME/yt/${video_id}.en.vtt"
+    echo "removed the things from $XDG_CACHE_HOME/yt/${video_id}.en.vtt"
+else
+    notify-send "we have subtitles!"
+fi
+
+notify-send "Youtube!" "Starting the stream..."
+mpv --ytdl-format="bv*+ba/best" \
+    --sub-file="$XDG_CACHE_HOME/yt/${video_id}.en.vtt" \
+    "$link" &>/dev/null &!

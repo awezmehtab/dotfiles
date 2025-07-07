@@ -1,0 +1,35 @@
+#!/bin/bash
+
+status=$(bluetooth | awk '{print $3}')
+if [[ $status != "on" ]]; then
+    response=$(echo -e "Yes\nNo" | wofi -p "Bluetooth is turned off, should I turn it on?")
+    if [[ $response == "No" ]]; then
+        exit 0
+    else
+        bluetooth on
+        notify-send "Bluetooth turned on!"
+    fi
+fi
+
+bluetoothctl scan on >/dev/null 2>&1 &
+
+declare -a devices
+mapfile -t devices < <(bluetoothctl devices | sed -n 's/^Device //p' | cut -d ' ' -f2-)
+[ ${#devices[@]} -eq 0 ] && notify-send "Bluetooth" "No devices found" && exit 1
+
+devices=("Rescan" "Turn off bluetooth" "${devices[@]}")
+choice=$(printf "%s\n" "${devices[@]}" | wofi -p "Bluetooth:")
+[ -z "$choice" ] && exit
+
+if [[ $choice == "Turn off bluetooth" ]]; then
+    bluetooth off
+    exit 0
+elif [[ $choice == "Rescan" ]]; then
+    bluetooth off
+    bluetooth on
+    bluetoothctl scan on >/dev/null 2>&1 &
+    exit 0
+fi
+
+mac=$(bluetoothctl devices | grep "$choice" | head -1 | cut -d ' ' -f2)
+bluetoothctl connect "$mac" || notify-send "Bluetooth" "Failed to connect to $choice"
