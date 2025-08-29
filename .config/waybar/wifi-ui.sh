@@ -26,7 +26,8 @@ case "$essid" in
 esac
 
 # Truncate to 7 chars like max-length
-alias_short=$(echo "$alias" | cut -c1-7)
+alias_short=$(echo "$alias")
+# alias_short=$(echo "$alias" | cut -c1-7)
 
 # Output for Waybar
 echo "{\"text\": \"$icon $alias_short\", \"tooltip\": \"$essid ($signal%)\"}"

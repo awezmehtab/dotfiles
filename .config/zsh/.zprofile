@@ -27,8 +27,8 @@ export MANWIDTH=80
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PYTHON_HISTORY="$XDG_STATE_HOME/python/history"
-
-path=($path $HOME/.ghcup/bin $HOME/.cabal/bin)
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+export GHCUP_USE_XDG_DIRS=true
 
 # For screenshots
 export HYPRSHOT_DIR="$XDG_PICTURES_DIR/screenshots"
@@ -76,3 +76,11 @@ export WAL_BACKEND= #  "modern_colorthief"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
+unset DRI_PRIME
+
+# Android dev
+export ANDROID_SDK_ROOT=/home/awez/usr/android
+export ANDROID_HOME=$ANDROID_SDK_ROOT
+export ANDROID_AVD_HOME=$XDG_CONFIG_HOME/android/avd
+export ANDROID_SDK_HOME=$XDG_CONFIG_HOME/android
+path=($path $ANDROID_SDK_ROOT/cmdline-tools/latest/bin $ANDROID_SDK_ROOT/platform-tools $ANDROID_SDK_ROOT/emulator)

@@ -4,12 +4,12 @@
     "reload_style_on_change": true,
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": [ "custom/vm", "temperature", "pulseaudio",  "custom/wifi", "backlight", "battery" ],
+    "modules-right": [ "custom/todo", "custom/vm", "temperature", "pulseaudio",  "custom/wifi", "backlight", "battery" ],
 
     "clock": {
         "format": "{:%d %b - %H:%M}",
         // "tooltip-format": "{:%A}",
-        "tooltip-format": "<span size='12pt'>{calendar}</span>",
+        "tooltip-format": "<span size='14pt'>{calendar}</span>",
     },
 
     "temperature": {
@@ -46,7 +46,7 @@
         "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨",],
         "tooltip": true,
         "on-click": "~/.config/waybar/wifi-ui.sh",
-        "max-length": 7
+        "max-length": 20
     },
 
     "backlight": {
@@ -60,7 +60,7 @@
     "custom/wifi": {
         "format": "{}",
         "exec": "~/.config/waybar/wifi-ui.sh",
-        "interval": 10,
+        "interval": 1,
         "on-click": "~/usr/scripts/wifi",
         "return-type": "json",
         "tooltip": true
@@ -90,5 +90,10 @@
         "exec": "~/usr/scripts/vm",
         "exec-if": "~/usr/scripts/vmcheck",
         "interval": 2,
+    },
+
+    "custom/todo": {
+        "format": "Todo",
+        "on-click": "~/usr/scripts/todo"
     }
 }

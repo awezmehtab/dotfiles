@@ -1,4 +1,4 @@
-alias l='ls -lHhv --color --group-directories-first'
+alias l='ls -alHhv --color --group-directories-first'
 alias ll='ls -alhHv --color --group-directories-first'
 alias ls='ls --color'
 alias less='less -R'

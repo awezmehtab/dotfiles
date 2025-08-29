@@ -12,8 +12,13 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
 # The display and dbus vars are required if you're running this as a cron job
 # Please make it owned by something privileged, as this has to run in priv mode
 
+notify() {
+    local msg="$1"
+    sudo -u "awez" DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" notify-send "Backup" "$msg"
+}
+
 err() {
-    [[ -n $1 ]] && echo "$1" >&2
+    [[ -n $1 ]] && notify "$1" >&2
     exit 1
 }
 
@@ -36,16 +41,14 @@ mount $BACKUP_DEV $tmpdir || {
     err "Mount failure"
 }
 
-size=$(du -sc /home | tail -1 | awk '{print $1}')
-((size <= MAX)) || err "Size of your home dir exceeded $(numfmt $MAX --to=iec)"
-
-notify() {
-    local msg="$1"
-    sudo -u "awez" DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus" notify-send "$msg"
-}
-
 notify "Backup started..."
-if rsync --delete -aAX /home/ "$tmpdir/$BACKUP_DIR"; then
+RSYNC_IGNORE="/home/awez/.config/backupign"
+
+# size=$(du -scb /home | tail -1 | awk '{print $1}')
+# ((size <= MAX)) || err "Size of your home dir exceeded $(numfmt $MAX --to=iec)"
+
+[[ -f "$RSYNC_IGNORE" ]] || err "Rsync ignore file not found"
+if rsync --delete --exclude-from="$RSYNC_IGNORE" -aAX /home/ "$tmpdir/$BACKUP_DIR"; then
     notify "Backed up!"
 else
     notify "Partial backup, there was some error"

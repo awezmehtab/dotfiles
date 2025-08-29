@@ -1,5 +1,5 @@
 BasedOnStyle: Google
 IndentWidth: 4
-SortIncludes: Never
-AllowShortIfStatementsOnASingleLine: Never
+# SortIncludes: Never
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
 AllowShortFunctionsOnASingleLine: None

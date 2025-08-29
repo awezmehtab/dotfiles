@@ -3,7 +3,7 @@
 * {
     border: none;
     background: none;
-    font-family: JetBrainsMono Nerd Font;
+    font-family: JetBrainsMono Nerd Font Propo;
     font-size: 14px;
     color: @foreground; /* dutch-white */
 }
@@ -13,7 +13,7 @@
 }
 
 window#waybar {
-    background: rgba(1, 1, 1, 1);
+    background: rgba(10, 10, 10, 1);
     padding: 0px 5px;
     margin: 10px 0px;
 }
@@ -22,9 +22,9 @@ window#waybar {
     color: @foreground; /* walnut-brown */
     padding: 0 8px;
     margin: 0 2px 2px 2px;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(10, 10, 10, 0.8);
     /* background: rgba(60, 56, 54, 0.35); */
-    border-radius: 4px;
+    border-radius: 0px;
 }
 
 #workspaces button:hover {
@@ -33,24 +33,35 @@ window#waybar {
 }
 
 #workspaces button.focused {
-    background: rgba(7, 102, 120, 0.2); /* caribbean-current */
+    background: rgba(7, 102, 120, 1.0); /* caribbean-current */
     color: @foreground;
     box-shadow: inset 0 -3px #076678;
 }
 
 #workspaces button.active {
     /* background: rgba(60, 56, 54, 0.35);  */
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(80, 80, 80, 0.2);
     color: @foreground;
     font-weight: bold;
 }
 
-#clock, #pulseaudio, #battery, #network, #backlight, #custom-wifi, #custom-spotify, #custom-weather, #custom-vm, #bluetooth, #temperature {
+#clock,
+#pulseaudio,
+#battery,
+#network,
+#backlight,
+#custom-wifi,
+#custom-spotify,
+#custom-weather,
+#custom-vm,
+#custom-todo,
+#bluetooth,
+#temperature {
     padding: 0 10px;
     margin: 0 2px 2px 2px;
     min-height: 30px;
-    border-radius: 4px;
-    background: rgba(0, 0, 0, 0.8);
+    border-radius: 0px;
+    background: rgba(10, 10, 10, 0.8);
     transition: background 0.2s ease;
 }
 
@@ -64,6 +75,7 @@ window#waybar {
 #custom-wifi:hover,
 #custom-weather:hover,
 #custom-vm:hover,
+#custom-todo:hover,
 #custom-spotify:hover {
     background: rgba(40, 40, 50, 0.90);
 }
@@ -75,6 +87,7 @@ window#waybar {
 #custom-weather,
 #custom-spotify,
 #custom-vm,
+#custom-todo,
 #backlight,
 #bluetooth,
 #temperature,
@@ -91,6 +104,7 @@ window#waybar {
 #custom-wifi.disconnected   { color: #ea9a97; }
 
 tooltip {
-    background-color: black;
+    background-color: #0a0a0a;
     color: white; /* optional */
+    border-radius: 0px;
 }

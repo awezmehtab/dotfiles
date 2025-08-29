@@ -14,11 +14,7 @@ choice=$(fd -t f --format '{/.}' . $WALLPAPER_DIR | wofi -i -p "Choose wallpaper
 
 choice=$(fd -t f $choice $WALLPAPER_DIR | head -1)
 
-if [[ "${choice##*.}" == "jpg" ]]; then
-    magick $choice $WALLPAPER
-else
-    cp "$choice" $WALLPAPER
-fi
+magick "$choice" -resize x1080^ -gravity center -crop 1920x1080+0+0 +repage "$WALLPAPER"
 hyprctl hyprpaper reload ,"$WALLPAPER"
 if [[ -n $WAL_BACKEND ]]; then
     $PYTHON/bin/wal --backend "$WAL_BACKEND" -i "$WALLPAPER" &> /tmp/wal.log
