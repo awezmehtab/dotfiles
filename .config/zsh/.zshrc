@@ -48,8 +48,7 @@ set -o PROMPT_SUBST
 # source '/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme'
 # [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 # if using pywal
-PROMPT='%K{$color0}%F{$color4} %n \
-%K{$color0}%F{$color8} %~ \
+PROMPT='%F{$color8} %~ \
 %(?.%F{$color1}.%F{$color3})❯%f '
 RPROMPT=""
 
