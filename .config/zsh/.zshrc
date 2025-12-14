@@ -2,11 +2,6 @@ ssource() {
     [[ -f "$1" ]] && [[ -r "$1" ]] && source "$1"
 }
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh//.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-ssource "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-
 zmodload zsh/complist
 autoload -U compinit && compinit
 autoload -U colors && colors
@@ -24,13 +19,11 @@ setopt extended_glob
 setopt interactive_comments
 setopt autocd
 
-# requires zsh-autosuggestions and zsh-syntax-highlighting packages
-# this varies highly based on where your package manager places these files
 ssource /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ssource /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source <(fzf --zsh)
 
-[[ -f ~/.cache/wal/colors.sh ]] && source ~/.cache/wal/colors.sh
+ssource $ZDOTDIR/colors.zsh
 
 # Enable git prompt info
 autoload -Uz vcs_info
@@ -45,15 +38,18 @@ precmd() {
   vcs_info
 }
 set -o PROMPT_SUBST
-# source '/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme'
-# [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-# if using pywal
 PROMPT='%F{$color8} %~ \
-%(?.%F{$color1}.%F{$color3})❯%f '
+%(?.%F{$color2}.%F{$color1})❯%f '
+# PROMPT='%F{#11ff55} %~ \
+# %(?.%F{$color1}.%F{#ff5555})❯%f '
+# PROMPT='%~ %(?)❯%f '
 RPROMPT=""
 
-ssource $ZDOTDIR/aliases.zsh
-ssource $ZDOTDIR/funcs.zsh
-ssource $ZDOTDIR/binds.zsh
-ssource $ZDOTDIR/vars.zsh
-ssource $ZDOTDIR/secrets.zsh
+ssource "$ZDOTDIR/aliases.zsh"
+ssource "$ZDOTDIR/funcs.zsh"
+ssource "$ZDOTDIR/binds.zsh"
+ssource "$ZDOTDIR/vars.zsh"
+ssource "$ZDOTDIR/secrets.zsh"
+ssource "$ZDOTDIR/completions/bw.zsh"
+
+unset DRI_PRIME

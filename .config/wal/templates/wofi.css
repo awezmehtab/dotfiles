@@ -1,24 +1,32 @@
 window {{
-    background-color: rgba({background.rgb}, 0.85);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 0px solid {color8};
-    padding: 8px;
+    background-color: rgba(16, 16, 16, 0.85);
+    border: 2px solid {{color8}};
+    border-radius: 0px;
+    padding: 12px 16px;
     font-size: 18px;
-    font-family: "Roboto Mono", monospace;
+    font-family: "JetBrainsMono Nerd Font Mono", monospace;
     margin: 30% auto 0 auto;
-    width: 600px;
+    width: 2px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
 }}
 
 #input {{
-    background-color: rgba(35, 35, 35, 0.9);
-    color: {foreground};
+    background-color: transparent;
+    color: {{foreground}};
     border: none;
-    padding: 8px;
+    padding: 12px 12px 12px 6px;
+    padding-left: 0px;
+    border-radius: 0px;
+    background-image: none;
 }}
 
-#inner-box, #outer-box {{
-    background-color: transparent;
+
+#input > image.left {{
+    -gtk-icon-transform:scaleX(0);
 }}
 
 #input:focus {{
@@ -28,13 +36,24 @@ window {{
 }}
 
 #entry {{
+    width: 100%;
+    text-align: center;
     background-color: transparent;
-    color: {foreground};
-    padding: 10px;
+    color: {{foreground}};
+    padding: 12px 18px;
     border-radius: 0px;
 }}
 
 #entry:selected {{
-    background-color: {color4};
-    color: {background};
+    background-color: transparent;
+    border: 10px #ffffff;
+    box-shadow: none;
+}}
+
+#text:selected {{
+    color: {color5};
+}}
+
+#img {{
+    padding-right: 18px;
 }}

@@ -21,7 +21,7 @@ fi
 
 # Aliases
 case "$essid" in
-    "") alias="no wifi";;
+    "") alias="no internet";;
     *) alias="$essid";;
 esac
 

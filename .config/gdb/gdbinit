@@ -1,4 +1,4 @@
-set debuginfod enable on
+set debuginfod enable off
 define cls
     shell clear
 end
@@ -10,3 +10,10 @@ define pm
     set $i = $i + 1
   end
 end
+
+set history save
+set verbose off
+set print pretty on
+set print array off
+set print array-indexes on
+set auto-load safe-path /

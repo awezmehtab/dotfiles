@@ -1,5 +1,5 @@
 show=dmenu
-prompt=Run:
+prompt=Open:
 allow_markup=false
 hide_scroll=true
 width=30%
@@ -10,3 +10,4 @@ font=monospace 20
 mode=drun
 show_icons=false
 allow_images=true
+image_size=28

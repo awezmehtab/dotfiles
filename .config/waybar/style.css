@@ -50,12 +50,8 @@ window#waybar {
 #battery,
 #network,
 #backlight,
-#custom-wifi,
-#custom-spotify,
-#custom-weather,
-#custom-vm,
-#custom-todo,
 #bluetooth,
+#cpu,
 #temperature {
     padding: 0 10px;
     margin: 0 2px 2px 2px;
@@ -72,24 +68,16 @@ window#waybar {
 #backlight:hover,
 #bluetooth:hover,
 #temperature:hover,
-#custom-wifi:hover,
-#custom-weather:hover,
-#custom-vm:hover,
-#custom-todo:hover,
-#custom-spotify:hover {
+#cpu:hover {
     background: rgba(40, 40, 50, 0.90);
 }
 
 #clock,
 #battery,
 #network,
-#custom-wifi,
-#custom-weather,
-#custom-spotify,
-#custom-vm,
-#custom-todo,
 #backlight,
 #bluetooth,
+#cpu,
 #temperature,
 #pulseaudio {
     color: @foreground;

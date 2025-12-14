@@ -57,7 +57,7 @@ export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 ssource() {
     [[ -f "$1" ]] && [[ -r "$1" ]] && source "$1"
 }
-ssource "$XDG_DATA_HOME/cargo/env"
+ssource "$CARGO_HOME/env"
 
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 
@@ -71,16 +71,14 @@ export WALLPAPER="$XDG_PICTURES_DIR/wallpaper.png"
 export PYTHON="$HOME/usr/.pyvenv/"
 ssource ~/usr/.pyvenv/bin/activate
 export SCRIPTS="$HOME/usr/scripts/"
-export WAL_BACKEND= #  "modern_colorthief"
+export WAL_BACKEND=wal
 
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
 export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
 unset DRI_PRIME
 
-# Android dev
-export ANDROID_SDK_ROOT=/home/awez/usr/android
-export ANDROID_HOME=$ANDROID_SDK_ROOT
-export ANDROID_AVD_HOME=$XDG_CONFIG_HOME/android/avd
-export ANDROID_SDK_HOME=$XDG_CONFIG_HOME/android
-path=($path $ANDROID_SDK_ROOT/cmdline-tools/latest/bin $ANDROID_SDK_ROOT/platform-tools $ANDROID_SDK_ROOT/emulator)
+export LC_TIME=C.UTF-8
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+

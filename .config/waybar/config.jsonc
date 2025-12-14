@@ -1,10 +1,10 @@
 {
     "layer": "top",
-    "position": "top",
+    "position": "bottom",
     "reload_style_on_change": true,
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": [ "custom/todo", "custom/vm", "temperature", "pulseaudio",  "custom/wifi", "backlight", "battery" ],
+    "modules-right": ["group/tray-expander", "cpu", "custom/vm", "temperature", "pulseaudio",  "network", "backlight", "battery" ],
 
     "clock": {
         "format": "{:%d %b - %H:%M}",
@@ -34,19 +34,31 @@
         "format": "{icon} {capacity}%",
         "format-charging": "{icon} {capacity}%",
         "format-icons": {
-            "default":  ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󱟢"]
+            "default":  ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󱟢"],
+            "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
         },
+        "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+        "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+    },
+
+    "cpu": {
+        "interval": 5,
+        "format": "󰍛",
+        "on-click": "$TERMINAL --class FloatKitty -e btop"
     },
 
     "network": {
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "format": "{icon} {essid}",
         "format-wifi": "{icon} {essid}",
-        //"format-wifi": "{icon}",
-        "format-ethernet": "󰈀 Ethernet",
-        "format-disconnected": "no wifi",
-        "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨",],
-        "tooltip": true,
-        "on-click": "~/.config/waybar/wifi-ui.sh",
-        "max-length": 20
+        "format-ethernet": "󰀂",
+        "format-disconnected": "󰤮",
+        "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "tooltip-format-disconnected": "Disconnected",
+        "interval": 3,
+        "spacing": 1,
+        "on-click": "~/usr/scripts/wifi"
     },
 
     "backlight": {
@@ -57,43 +69,30 @@
         "tooltip": false
     },
 
-    "custom/wifi": {
-        "format": "{}",
-        "exec": "~/.config/waybar/wifi-ui.sh",
-        "interval": 1,
-        "on-click": "~/usr/scripts/wifi",
-        "return-type": "json",
-        "tooltip": true
+
+    "group/tray-expander": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 600,
+            "children-class": "tray-group-item"
+        },
+        "modules": ["custom/expand-icon", "tray"]
     },
 
-    "custom/spotify": {
-        "format": "{}",
-        "exec": "~/usr/scripts/media",
-        "exec-if": "playerctl status &>/dev/null",
-        "interval": 1,
-        "on-click": "playerctl play-pause",
+    "custom/expand-icon": {
+        "format": " ",
         "tooltip": false
     },
 
-    "custom/weather": {
-        "format": "}",
-        "exec": "~/usr/scripts/weather",
-        "exec-if": "curl -sf --max-time 10 https://wttr.in > /dev/null",
-        "interval": 600,
-        "on-click": "firefox \"https://www.google.com/search?q=weather\"",
-        "on-click-right": "",
-        "tooltip": false
+    "custom/screenrecording-indicator": {
+        "on-click": "~/usr/scripts/screenrecord",
+        "exec": "~/.config/waybar/indicators/screenrecord.sh",
+        "signal": 8,
+        "return-type": "json"
     },
 
-    "custom/vm": {
-        "format": "{}",
-        "exec": "~/usr/scripts/vm",
-        "exec-if": "~/usr/scripts/vmcheck",
-        "interval": 2,
-    },
-
-    "custom/todo": {
-        "format": "Todo",
-        "on-click": "~/usr/scripts/todo"
+    "tray": {
+        "icon-size": 12,
+        "spacing": 12
     }
 }
