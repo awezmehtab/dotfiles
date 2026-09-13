@@ -1,0 +1,6 @@
+require("wm/startup")
+require("wm/looks")
+require("wm/layouts")
+require("wm/inputs")
+require("wm/binds")
+require("wm/rules")

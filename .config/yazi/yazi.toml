@@ -1,7 +1,0 @@
-[opener]
-pdff = [
-    { run = 'zathura "$@" &>/dev/null &!', desc = "zathura", block = true, for = "unix" }
-]
-
-[open]
-rules = [{mime = "application/pdf", use = ["pdff", "reveal"] }]
