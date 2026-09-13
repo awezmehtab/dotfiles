@@ -19,7 +19,7 @@ export SAVEHIST=10000
 export HISTSIZE=10000
 
 typeset -U path
-path=($HOME/.local/bin $HOME/usr/bin $path $HOME/usr/scripts)
+path=($HOME/.local/bin $path)
 export GIT_CONFIG_GLOBAL="$XDG_CONFIG_HOME/git/config"
 
 export MANPAGER="nvim +Man!"
@@ -34,8 +34,6 @@ export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export GHCUP_USE_XDG_DIRS=true
 
 export HYPRSHOT_DIR="$XDG_PICTURES_DIR/screenshots"
-
-export GPG_TTY=$(tty)
 
 export MYVIMRC="$HOME/.config/nvim/init.lua"
 export TERMINAL=kitty
@@ -55,9 +53,6 @@ export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
 
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
-ssource() {
-    [[ -f "$1" ]] && [[ -r "$1" ]] && source "$1"
-}
 ssource "$CARGO_HOME/env"
 
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
@@ -65,14 +60,11 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/pass"
 export GDBHISTFILE="$XDG_DATA_HOME"/gdb/history
 
 export WALLPAPER="$XDG_PICTURES_DIR/wallpaper.png"
-export PYTHON="$HOME/usr/.pyvenv/"
-ssource $HOME/usr/.pyvenv/bin/activate
-export SCRIPTS="$HOME/usr/scripts/"
 export WAL_BACKEND=wal
 
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
-export PATH="$PATH:$XDG_DATA_HOME/npm/bin"
+path=($path $XDG_DATA_HOME/npm/bin)
 
 export LC_TIME=C.UTF-8
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
@@ -89,3 +81,9 @@ export OLLAMA_MODELS="$XDG_DATA_HOME/ollama"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
+export W3M_DIR="$XDG_DATA_HOME/w3m"
+path=($path $HOME/opt/zig)
+export ZPROFILE_LOADED

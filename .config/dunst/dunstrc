@@ -500,3 +500,4 @@
 [volume]
     desktop_entry = volume
     icon = audio-volume-high
+    history_ignore = yes

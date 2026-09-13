@@ -7,8 +7,12 @@ map U !du -csh *
 map <enter> open
 map H set hidden!
 map sz !du -sh -- "$f"
-set sortby time
 map sn :set sortby natural; set dirfirst false
+set sortby name
+
+map d
+map x cut
+map dd delete
 
 set ifs "\n"
 
@@ -17,8 +21,25 @@ cmd open ${{
         application/pdf) setsid -f zathura "$f" > /dev/null 2>&1 & ;;
         video/*)         setsid -f mpv "$f" > /dev/null 2>&1 ;;
         image/*)         setsid -f imv "$f" > /dev/null 2>&1 ;;
-        text/*)          nvim $fx;;
-        application/zip) nvim $fx;;
+        text/*)          nvim "$f";;
+        application/javascript) nvim "$f";;
+        application/json) nvim "$f";;
+        application/zip) nvim "$f";;
         *)               setsid -f xdg-open "$f" > /dev/null 2>&1 ;;
     esac
 }}
+
+cmd fzf_jump ${{
+    res="$(fzf --walker=dir --walker-root=$HOME --header="which dir you wanna go?" || true)"
+    if [ -n "$res" ]; then
+        if [ -d "$res" ]; then
+            cmd="cd"
+        else
+            cmd="select"
+        fi
+        res="$(printf '%s' "$res" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+        lf -remote "send $id $cmd \"$res\""
+    fi
+}}
+map <a-c> :fzf_jump
+map <a-o> $$EDITOR "$(fzf --walker-root=$HOME --header="which file you wanna open?" || true)"

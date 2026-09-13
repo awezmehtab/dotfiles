@@ -1,6 +1,6 @@
 set statusbar-h-padding 0
 set statusbar-v-padding 0
-set page-padding 1
+# set page-padding 1
 set selection-clipboard clipboard
 set adjust-open best-fit
 set font "JetBrainsMono Nerd Font Mono 10"
@@ -27,3 +27,5 @@ map <Left> navigate previous
 map <Right> navigate next
 map <S-Space> navigate previous
 map <Space> navigate next
+map <Button3> navigate next
+map <Button2> navigate previous

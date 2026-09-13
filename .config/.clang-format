@@ -3,4 +3,4 @@ IndentWidth: 4
 SortIncludes: Never
 AllowShortIfStatementsOnASingleLine: AllIfsAndElse
 AllowShortFunctionsOnASingleLine: None
-ColumnLimit: 120
+ColumnLimit: 80

@@ -7,8 +7,6 @@ alias ls='\eza --color=auto'
 alias less='less -R'
 alias eza='eza --total-size --git --icons --sort=size -al'
 alias e='eza --total-size --git --icons -al'
-alias imv='imv'
-alias pyvenv="source $HOME/usr/.pyvenv/bin/activate"
 alias gst='git status'
 alias ga='git add'
 alias gc='git commit'

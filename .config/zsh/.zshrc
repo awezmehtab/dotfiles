@@ -1,7 +1,3 @@
-ssource() {
-    [[ -f "$1" ]] && [[ -r "$1" ]] && source "$1"
-}
-
 eval "$(dircolors -b)"
 
 fpath+="$ZDOTDIR/completions"
@@ -23,6 +19,7 @@ setopt autocd
 
 ssource $ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 ssource $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ssource $ZDOTDIR/shrink-path/shrink-path.plugin.zsh
 source <(fzf --zsh)
 
 ssource $ZDOTDIR/colors.zsh
@@ -30,7 +27,8 @@ ssource $ZDOTDIR/colors.zsh
 set -o PROMPT_SUBST
 PROMPT1='%F{$color8} %1~ %(?.%F{$color2}.%F{$color1})❯%f '
 PROMPT2='%F{$color8} %~ %(?.%F{$color2}.%F{$color1})❯%f '
-PROMPT="$PROMPT2"
+PROMPT3='%F{$color8} $(shrink_path -f) %(?.%F{$color2}.%F{$color1})❯%f '
+PROMPT="$PROMPT3"
 RPROMPT=""
 
 ssource "$ZDOTDIR/aliases.zsh"
@@ -38,5 +36,3 @@ ssource "$ZDOTDIR/funcs.zsh"
 ssource "$ZDOTDIR/binds.zsh"
 ssource "$ZDOTDIR/vars.zsh"
 ssource "$ZDOTDIR/secrets.zsh"
-
-export PATH="$PATH:$HOME/opt/clab"
