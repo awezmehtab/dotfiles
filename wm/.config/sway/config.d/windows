@@ -1,0 +1,4 @@
+assign [app_id="firefox"] workspace number 2
+for_window [app_id="btop-floating"] floating enable, resize set 1200 800
+for_window [class="Spotify"] floating enable, resize set 1200 800, move to scratchpad
+# bindsym $mod+m [class="Spotify"] scratchpad show
