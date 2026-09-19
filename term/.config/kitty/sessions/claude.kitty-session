@@ -1,0 +1,4 @@
+layout splits
+launch --title claude-pane
+launch --location=vsplit --bias 54
+focus_matching_window title:claude-pane

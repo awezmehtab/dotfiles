@@ -1,18 +1,14 @@
-Welcome to my `dotfiles` repository. Hopefully this is portable.
-To use it, follow these steps:
+To use any section of my config (eg. apps), run this from repo root:
+```bash
+stow -R -t ~ apps
+```
 
-* If you have previous config files, back them up
-* Clone this repository: `gh clone awezmehtab/dotfiles` (preferably at
-`~/dotfiles/` idk why).
-* `cd` into it.
-* Run `stow -D -t $HOME .` - this deletes all dangling symlinks created earlier
-* Run `stow -t $HOME .` which installs this new config.
-* If there are pre-existing files which this is trying to replace, and you're
-willing to, do `stow --adopt -t $HOME .`
-> **NOTE:** This removes all configs initially and the installs. So you might
-> need to reload few things (or even restart your system).
+## Firefox
 
+You need to set `toolkit.legacyUserProfileCustomizations.stylesheets` to true
+from `about:config`, else this is ignored. find profile dir via `about:support`
+in firefox. And then symlink this there, eg:
 
-> **NOTE:** For `keyd`, you can't run `stow` as this changes keyboard at
-> hardware level. Just write the conf files in `/etc/keyd/` and run `sudo
-> systemctl restart keyd`.
+```bash
+ln -s ~/.mozilla/firefox/chrome <profile_dir>
+```

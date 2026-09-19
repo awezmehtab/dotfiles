@@ -12,6 +12,7 @@ bindkey -e
 bindkey "^[[Z" reverse-menu-complete
 
 setopt auto_param_slash extended_glob interactive_comments autocd prompt_subst
+setopt auto_pushd pushd_ignore_dups
 
 command -v fzf &>/dev/null && source <(fzf --zsh)
 ssource $ZDOTDIR/plugins.zsh

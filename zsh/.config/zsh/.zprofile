@@ -18,7 +18,7 @@ export XDG_DESKTOP_DIR XDG_DOWNLOAD_DIR XDG_DOCUMENTS_DIR \
        XDG_TEMPLATES_DIR XDG_PUBLICSHARE_DIR
 
 typeset -U path
-path=($HOME/.local/bin $path $XDG_DATA_HOME/npm/bin $HOME/opt/zig)
+path=($HOME/.local/bin $path $XDG_DATA_HOME/npm/bin)
 
 ## core
 export EDITOR="nvim"
@@ -85,6 +85,7 @@ export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
 
 ## venv shit
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+ssource "$XDG_DATA_HOME/venv/main/bin/activate"
 
 ## cuda
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
@@ -96,7 +97,7 @@ export LIBVIRT_DEFAULT_URI=qemu:///system
 
 ## fzf
 export FZF_DEFAULT_OPTS='--reverse --height 40%'
-export FZF_ALT_C_OPTS='--walker-root=/home/awez --walker-skip=.mozilla,.cache,.cabal,.rustup,.vscode,.local,.cargo,.ghcup,.ghc,.config/libreoffice,.config/google-chrome,/home/awez/tmp'
+export FZF_ALT_C_OPTS='--walker-root=/home/awez --walker-skip=.mozilla,.cache,.rustup,.vscode,.local,.cargo,.ghcup,.ghc,.config/libreoffice,.config/google-chrome'
 
 ## desktop
 export WALLPAPER="$XDG_PICTURES_DIR/wallpaper.png"

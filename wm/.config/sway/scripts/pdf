@@ -1,0 +1,5 @@
+#!/bin/bash
+
+VIEWER=${1:-"zathura"}
+file=$(wmenu -p "enter file name: " < <(fd -e pdf . ~ | sed "s|$HOME|~|"))
+$VIEWER "${file/#\~/$HOME}" &>/dev/null &

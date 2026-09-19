@@ -1,0 +1,35 @@
+/* inspired from: https://github.com/jonhoo/configs/ */
+@-moz-document url(chrome://browser/content/browser.xhtml) {
+	/* requires that you set
+	 * toolkit.legacyUserProfileCustomizations.stylesheets = true
+	 * in about:config
+	 * figure out current firefox's profile folder in about:support */
+	#main-window body { flex-direction: column-reverse !important; }
+	#navigator-toolbox { flex-direction: column-reverse !important; }
+	.searchmode-switcher { position: static !important; }
+	#urlbar {
+		top: unset !important;
+		bottom: calc(var(--urlbar-container-height) + 2 * var(--urlbar-padding-block)) !important;
+		box-shadow: none !important;
+		display: flex !important;
+		flex-direction: column !important;
+	}
+		#urlbar > * {
+			flex: none;
+		}
+	#urlbar .urlbar-input-container {
+		order: 2;
+	}
+	#urlbar > .urlbarView {
+		order: 1;
+		border-bottom: 1px solid #666;
+	}
+	#urlbar-results {
+		display: flex;
+		flex-direction: column-reverse;
+	}
+	.search-one-offs { display: none !important; }
+	.tab-background { border-top: none !important; }
+	#navigator-toolbox::after { border: none; }
+	toolbox[inFullscreen=true] { display: none; }
+}
